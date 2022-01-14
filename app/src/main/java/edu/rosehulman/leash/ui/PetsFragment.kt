@@ -31,7 +31,7 @@ class PetsFragment : Fragment() {
         _binding = FragmentPetsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
+        val textView: TextView = binding.textPets
         petsViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })

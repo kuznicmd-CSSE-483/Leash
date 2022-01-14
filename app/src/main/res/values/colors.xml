@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="Alpha">#FF00F6B4</color>
+    <color name="Bravo">#FF00D45F</color>
+    <color name="Charlie">#FF0CEB31</color>
+    <color name="Delta">#FF1ED400</color>
+    <color name="Echo">#FF79F600</color>
+    <color name="Foxtrot">#FFCEF6B4</color>
+    <color name="Golf">#FF00D5B4</color>
+    <color name="Hotel">#FF00A6B4</color>
+    <color name="India">#FF0ABC27</color>
 </resources>
