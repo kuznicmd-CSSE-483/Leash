@@ -1,4 +1,4 @@
-package edu.rosehulman.leash.ui.notifications
+package edu.rosehulman.leash.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import edu.rosehulman.leash.R
-import edu.rosehulman.leash.databinding.FragmentNotificationsBinding
+import edu.rosehulman.leash.databinding.FragmentPetsBinding
+import edu.rosehulman.leash.models.PetsViewModel
 
-class NotificationsFragment : Fragment() {
+class PetsFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
-    private var _binding: FragmentNotificationsBinding? = null
+    private lateinit var petsViewModel: PetsViewModel
+    private var _binding: FragmentPetsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,14 +25,14 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        petsViewModel =
+            ViewModelProvider(this).get(PetsViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentPetsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textDashboard
+        petsViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
