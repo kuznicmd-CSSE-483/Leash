@@ -33,10 +33,10 @@
             android:layout_below="@id/profile_image"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp"
-            android:textSize="30sp"
-            android:textStyle="bold"
+            android:text="JENNIFER SUN"
             android:textColor="@color/white"
-            android:text="JENNIFER SUN"/>
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/account_creation_date_text"
