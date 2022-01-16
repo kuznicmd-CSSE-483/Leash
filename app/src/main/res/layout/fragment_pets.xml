@@ -9,7 +9,7 @@
     >
 
     <TextView
-        android:id="@+id/text_pets"
+        android:id="@+id/pets_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -17,8 +17,71 @@
         android:layout_marginEnd="8dp"
         android:text="Jennifer's Pets"
         android:textAlignment="center"
-        android:textSize="40sp"
-        android:textColor="@color/Golf"/>
+        android:textColor="@color/Golf"
+        android:textSize="40sp" />
+
+    <!-- Series of Paw Print Icons for Decoration -->
+    <ImageView
+        android:id="@+id/paw_icon1"
+        style="@style/pawPrints"
+        app:tint="@color/black"
+        android:layout_alignRight="@id/pets_textView"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="25dp"
+        android:rotation="185" />
+
+    <ImageView
+        android:id="@+id/paw_icon2"
+        style="@style/pawPrints"
+        app:tint="@color/black"
+        android:layout_alignRight="@id/pets_textView"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="60dp"
+        android:rotation="215" />
+
+    <ImageView
+        android:id="@+id/paw_icon3"
+        style="@style/pawPrints"
+        app:tint="@color/black"
+        android:layout_alignRight="@id/pets_textView"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="30dp"
+        android:rotation="195"/>
+
+    <ImageView
+        android:id="@+id/paw_icon4"
+        style="@style/pawPrints"
+        app:tint="@color/black"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="25dp"
+        android:rotation="5" />
+
+    <ImageView
+        android:id="@+id/paw_icon5"
+        style="@style/pawPrints"
+        app:tint="@color/black"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="60dp"
+        android:rotation="35" />
+
+    <ImageView
+        android:id="@+id/paw_icon6"
+        style="@style/pawPrints"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="60dp"
+        android:rotation="15"
+        app:tint="@color/black" />
+
+    <!-- Recycler for List of Animals -->
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recycler_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@id/pets_textView"-->
+<!--        android:layout_marginTop="20dp" />-->
 
     <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -28,9 +91,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/Golf"
+        android:backgroundTint="@color/Hotel"
         app:srcCompat="@android:drawable/ic_input_add"
         tools:ignore="ContentDescription" />
 

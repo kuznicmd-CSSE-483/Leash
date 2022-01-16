@@ -12,7 +12,17 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Font for the Application -->
-        <item name="android:fontFamily">@font/bebasNeue</item>
-        <item name="fontFamily">@font/bebasNeue</item>
+        <item name="android:fontFamily">@font/bebas_neue</item>
+        <item name="fontFamily">@font/bebas_neue</item>
     </style>
+
+    <!--  Paw Prints Icons used on Pet Screen -->
+    <style name="pawPrints">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:src">@drawable/ic_baseline_pets_24</item>
+        <item name="contentDescription">Paw Print</item>
+    </style>
+
+
 </resources>
