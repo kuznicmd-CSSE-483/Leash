@@ -93,7 +93,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/Hotel"
+        android:backgroundTint="@color/Golf"
         app:srcCompat="@android:drawable/ic_input_add"
         tools:ignore="ContentDescription" />
 
