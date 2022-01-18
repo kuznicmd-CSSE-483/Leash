@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:backgroundTint="@color/Bravo">
+
+    <TextView
+        android:id="@+id/pet_name_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pet: Yam-yam"
+        android:textSize="24sp"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/event_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Feed Yam-Yam"
+        android:textSize="40sp"
+        android:textColor="@color/white"/>
+
+    <ImageView
+        android:id="@+id/edit_imageView"
+        app:tint="@color/white"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:contentDescription="Image"
+        android:src="@drawable/ic_baseline_edit_24"/>
+
+    <TextView
+        android:id="@+id/time_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="At: 10:00AM"
+        android:textSize="24sp"
+        android:textColor="@color/white"/>
+</RelativeLayout>
