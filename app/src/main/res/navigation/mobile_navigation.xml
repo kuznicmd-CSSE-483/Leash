@@ -40,4 +40,10 @@
         android:name="edu.rosehulman.leash.ui.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_profile_edit"
+        android:name="edu.rosehulman.leash.ui.ProfileEditFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_profile_edit" />
 </navigation>

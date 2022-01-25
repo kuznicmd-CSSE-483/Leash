@@ -28,6 +28,8 @@
     <string name="events_edit">Edit Event</string>
     <string name="pets_edit">Edit Pet</string>
     <string name="pets_detail">Pet Detail</string>
+    <string name="profile_edit_text_hint">Name</string>
+    <string name="edit_profile_save_button">SAVE</string>
     <string-array name="event_type_array">
         <item>Reminder</item>
         <item>Event</item>

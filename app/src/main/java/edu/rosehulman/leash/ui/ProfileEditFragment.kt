@@ -7,18 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import edu.rosehulman.leash.R
-import edu.rosehulman.leash.databinding.FragmentProfileBinding
+import edu.rosehulman.leash.databinding.FragmentProfileEditBinding
 
-class ProfileFragment : Fragment() {
+class ProfileEditFragment : Fragment() {
 
-    private lateinit var binding: FragmentProfileBinding
+    private lateinit var binding: FragmentProfileEditBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentProfileBinding.inflate(inflater, container, false)
+    ): View? {
+        binding = FragmentProfileEditBinding.inflate(inflater, container, false)
 
         setupButtons()
 
@@ -27,8 +27,8 @@ class ProfileFragment : Fragment() {
 
     fun setupButtons() {
         // TODO: For demonstrating navigation
-        binding.editImageView.setOnClickListener {
-            findNavController().navigate(R.id.navigation_profile_edit)
+        binding.saveProfileButton.setOnClickListener {
+            findNavController().navigate(R.id.navigation_profile)
         }
     }
 }
