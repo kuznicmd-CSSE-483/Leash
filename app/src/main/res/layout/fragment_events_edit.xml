@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Foxtrot"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/event_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="8dp"
+            android:text="Event"
+            android:textAlignment="center"
+            android:textColor="@color/Golf"
+            android:textSize="40sp" />
+
+        <Spinner
+            android:id="@+id/event_type_spinner"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/event_header"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/event_type_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/event_type_spinner"
+            android:layout_alignLeft="@id/event_type_spinner"
+            android:text="@string/events_edit_event_type"
+            android:textColor="@color/Hotel"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/name_editText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/event_type_textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/Hotel"
+            android:fontFamily="@font/open_sans_light"
+            android:hint="@string/events_edit_name_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColorHint="@color/Bravo" />
+
+        <TextView
+            android:id="@+id/name_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_editText"
+            android:layout_alignLeft="@id/event_type_spinner"
+            android:text="@string/events_edit_name"
+            android:textColor="@color/Hotel"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/time_editText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/Hotel"
+            android:fontFamily="@font/open_sans_light"
+            android:hint="@string/events_edit_time_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColorHint="@color/Bravo" />
+
+        <TextView
+            android:id="@+id/time_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time_editText"
+            android:layout_alignLeft="@id/event_type_spinner"
+            android:text="@string/events_edit_time"
+            android:textColor="@color/Hotel"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/alert_spinner"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time_textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/alert_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/alert_spinner"
+            android:layout_alignLeft="@id/event_type_spinner"
+            android:text="@string/events_edit_alert"
+            android:textColor="@color/Hotel"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/recurrence_spinner"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/alert_textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/recurrence_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recurrence_spinner"
+            android:layout_alignLeft="@id/event_type_spinner"
+            android:text="@string/events_edit_recurrence"
+            android:textColor="@color/Hotel"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/pet_spinner"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recurrence_textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/pet_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pet_spinner"
+            android:layout_alignLeft="@id/event_type_spinner"
+            android:text="@string/events_edit_pet_type"
+            android:textColor="@color/Hotel"
+            android:textSize="20sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pet_textView"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/Golf"
+            android:text="@string/events_edit_create_button"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
+    </RelativeLayout>
+</ScrollView>
