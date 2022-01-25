@@ -15,20 +15,33 @@
     <string name="pets_edit_pet_type_hint">Pet Type</string>
     <string name="pets_edit_pet_type">Pet Type</string>
     <string name="pets_edit_create_button">Create</string>
-    <string name="events_edit_event_type_hint">Reminder</string>
     <string name="events_edit_event_type">Event Type</string>
     <string name="events_edit_name_hint">Name for Event</string>
     <string name="events_edit_name">Name</string>
     <string name="events_edit_time_hint">12:00AM</string>
     <string name="events_edit_time">Time of Event</string>
-    <string name="events_edit_alert_hint">None</string>
     <string name="events_edit_alert">Alert Notifications</string>
-    <string name="events_edit_reoccurence_hint">None</string>
-    <string name="events_edit_reoccurence">Reoccurence</string>
+    <string name="events_edit_recurrence">Recurrence</string>
     <string name="events_edit_pet_type_hint">None</string>
     <string name="events_edit_pet_type">Pet</string>
     <string name="events_edit_create_button">Create</string>
     <string name="events_edit">Edit Event</string>
     <string name="pets_edit">Edit Pet</string>
     <string name="pets_detail">Pet Detail</string>
+    <string-array name="event_type_array">
+        <item>Reminder</item>
+        <item>Event</item>
+    </string-array>
+    <string-array name="alert_array">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="recurrence_array">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Bi-Weekly</item>
+        <item>Tri-Weekly</item>
+        <item>Monthly</item>
+        <item>Annually</item>
+    </string-array>
 </resources>

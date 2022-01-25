@@ -23,7 +23,7 @@ class EventsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =FragmentEventsBinding.inflate(inflater, container, false)
+        binding = FragmentEventsBinding.inflate(inflater, container, false)
 
         setupButtons()
 
@@ -31,6 +31,7 @@ class EventsFragment : Fragment() {
     }
 
     fun setupButtons() {
+        // TODO: For demonstrating navigation
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.navigation_events_edit)
         }

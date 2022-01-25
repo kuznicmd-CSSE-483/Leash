@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pet: Yam-yam"
-        android:textSize="24sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/event_textView"
@@ -20,25 +20,25 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="Feed Yam-Yam"
-        android:textSize="40sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:textSize="40sp" />
 
     <ImageView
         android:id="@+id/edit_imageView"
-        app:tint="@color/white"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
         android:contentDescription="Image"
-        android:src="@drawable/ic_baseline_edit_24"/>
+        android:src="@drawable/ic_baseline_edit_24"
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/time_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:text="At: 10:00AM"
-        android:textSize="24sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:textSize="24sp" />
 </RelativeLayout>

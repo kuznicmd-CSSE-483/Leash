@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:background="@color/Foxtrot"
-    >
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/pet_header"
@@ -27,12 +26,12 @@
         android:layout_below="@id/pet_header"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:backgroundTint="@color/Hotel"
         android:fontFamily="@font/open_sans_light"
         android:hint="@string/pets_edit_name_hint"
         android:importantForAutofill="no"
         android:inputType="text"
-        android:backgroundTint="@color/Hotel"
-        android:textColorHint="@color/Bravo"/>
+        android:textColorHint="@color/Bravo" />
 
     <TextView
         android:id="@+id/name_textView"
@@ -42,8 +41,7 @@
         android:layout_alignLeft="@id/name_editText"
         android:text="@string/pets_edit_name"
         android:textColor="@color/Hotel"
-        android:textSize="20sp"
-        />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/birthdate_editText"
@@ -52,12 +50,12 @@
         android:layout_below="@id/name_textView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:backgroundTint="@color/Hotel"
         android:fontFamily="@font/open_sans_light"
         android:hint="@string/pets_edit_birthdate_hint"
         android:importantForAutofill="no"
         android:inputType="text"
-        android:backgroundTint="@color/Hotel"
-        android:textColorHint="@color/Bravo"/>
+        android:textColorHint="@color/Bravo" />
 
     <TextView
         android:id="@+id/birthdate_textView"
@@ -67,8 +65,7 @@
         android:layout_alignLeft="@id/birthdate_editText"
         android:text="@string/pets_edit_birthdate"
         android:textColor="@color/Hotel"
-        android:textSize="20sp"
-        />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/pet_type_editText"
@@ -95,12 +92,13 @@
         android:textSize="20sp" />
 
     <Button
+        android:id="@+id/create_pet_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/pet_type_textView"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="0dp"
+        android:layout_marginRight="20dp"
         android:backgroundTint="@color/Golf"
         android:text="@string/pets_edit_create_button"
         android:textColor="@color/white"
@@ -110,47 +108,47 @@
     <ImageView
         android:id="@+id/paw_icon1"
         style="@style/pawPrints"
-        app:tint="@color/black"
         android:layout_alignRight="@id/pet_header"
         android:layout_marginTop="15dp"
         android:layout_marginRight="25dp"
-        android:rotation="185" />
+        android:rotation="185"
+        app:tint="@color/black" />
 
     <ImageView
         android:id="@+id/paw_icon2"
         style="@style/pawPrints"
-        app:tint="@color/black"
         android:layout_alignRight="@id/pet_header"
         android:layout_marginTop="30dp"
         android:layout_marginRight="60dp"
-        android:rotation="215" />
+        android:rotation="215"
+        app:tint="@color/black" />
 
     <ImageView
         android:id="@+id/paw_icon3"
         style="@style/pawPrints"
-        app:tint="@color/black"
         android:layout_alignRight="@id/pet_header"
         android:layout_marginTop="60dp"
         android:layout_marginRight="30dp"
-        android:rotation="195"/>
+        android:rotation="195"
+        app:tint="@color/black" />
 
     <ImageView
         android:id="@+id/paw_icon4"
         style="@style/pawPrints"
-        app:tint="@color/black"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
         android:layout_marginLeft="25dp"
-        android:rotation="5" />
+        android:layout_marginBottom="15dp"
+        android:rotation="5"
+        app:tint="@color/black" />
 
     <ImageView
         android:id="@+id/paw_icon5"
         style="@style/pawPrints"
-        app:tint="@color/black"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
         android:layout_marginLeft="60dp"
-        android:rotation="35" />
+        android:layout_marginBottom="30dp"
+        android:rotation="35"
+        app:tint="@color/black" />
 
     <ImageView
         android:id="@+id/paw_icon6"
@@ -160,8 +158,5 @@
         android:layout_marginBottom="60dp"
         android:rotation="15"
         app:tint="@color/black" />
-
-
-
 
 </RelativeLayout>

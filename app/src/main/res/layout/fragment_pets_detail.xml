@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:fillViewport="true">
 
     <RelativeLayout
-        android:id="@+id/profile_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="80dp"
-        android:background="@color/Golf">
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/background_image"
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="75dp"
+            android:background="@color/Golf" />
+
 
         <ImageView
             android:id="@+id/pet_imageView"
@@ -31,6 +35,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="25dp"
             android:contentDescription="Image"
             android:src="@drawable/ic_baseline_edit_24"
             app:tint="@color/white" />
@@ -70,13 +76,13 @@
             android:textColor="@color/white"
             android:textSize="20sp" />
 
-<!--        &lt;!&ndash; Recycler for Reminders  &ndash;&gt;-->
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/reminders_recycler_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_below="@id/reminders_textView"-->
-<!--            android:layout_marginTop="20dp" />-->
+        <!--        &lt;!&ndash; Recycler for Reminders  &ndash;&gt;-->
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/reminders_recycler_view"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_below="@id/reminders_textView"-->
+        <!--            android:layout_marginTop="20dp" />-->
 
         <TextView
             android:id="@+id/events_textView"
@@ -87,16 +93,16 @@
             android:layout_marginTop="15dp"
             android:text="@string/pets_detail_events"
             android:textColor="@color/white"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
-<!--        &lt;!&ndash; Recycler for List of Events &ndash;&gt;-->
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/events_recycler_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_below="@id/events_textView"-->
-<!--            android:layout_marginTop="20dp" />-->
+        <!--        &lt;!&ndash; Recycler for List of Events &ndash;&gt;-->
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/events_recycler_view"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_below="@id/events_textView"-->
+        <!--            android:layout_marginTop="20dp" />-->
+
 
     </RelativeLayout>
-
-</RelativeLayout>
+</ScrollView>

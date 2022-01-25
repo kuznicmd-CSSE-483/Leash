@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.PetsFragment"
     android:background="@color/Foxtrot"
-    >
+    tools:context=".ui.PetsFragment">
 
     <TextView
         android:id="@+id/pets_textView"
@@ -24,47 +23,47 @@
     <ImageView
         android:id="@+id/paw_icon1"
         style="@style/pawPrints"
-        app:tint="@color/black"
         android:layout_alignRight="@id/pets_textView"
         android:layout_marginTop="15dp"
         android:layout_marginRight="25dp"
-        android:rotation="185" />
+        android:rotation="185"
+        app:tint="@color/black" />
 
     <ImageView
         android:id="@+id/paw_icon2"
         style="@style/pawPrints"
-        app:tint="@color/black"
         android:layout_alignRight="@id/pets_textView"
         android:layout_marginTop="30dp"
         android:layout_marginRight="60dp"
-        android:rotation="215" />
+        android:rotation="215"
+        app:tint="@color/black" />
 
     <ImageView
         android:id="@+id/paw_icon3"
         style="@style/pawPrints"
-        app:tint="@color/black"
         android:layout_alignRight="@id/pets_textView"
         android:layout_marginTop="60dp"
         android:layout_marginRight="30dp"
-        android:rotation="195"/>
+        android:rotation="195"
+        app:tint="@color/black" />
 
     <ImageView
         android:id="@+id/paw_icon4"
         style="@style/pawPrints"
-        app:tint="@color/black"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
         android:layout_marginLeft="25dp"
-        android:rotation="5" />
+        android:layout_marginBottom="15dp"
+        android:rotation="5"
+        app:tint="@color/black" />
 
     <ImageView
         android:id="@+id/paw_icon5"
         style="@style/pawPrints"
-        app:tint="@color/black"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
         android:layout_marginLeft="60dp"
-        android:rotation="35" />
+        android:layout_marginBottom="30dp"
+        android:rotation="35"
+        app:tint="@color/black" />
 
     <ImageView
         android:id="@+id/paw_icon6"
@@ -76,17 +75,16 @@
         app:tint="@color/black" />
 
     <!-- Recycler for List of Animals -->
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recycler_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_below="@id/pets_textView"-->
-<!--        android:layout_marginTop="20dp" />-->
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/recycler_view"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_below="@id/pets_textView"-->
+    <!--        android:layout_marginTop="20dp" />-->
 
     <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        app:tint="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -95,6 +93,7 @@
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/Golf"
         app:srcCompat="@android:drawable/ic_input_add"
+        app:tint="@color/white"
         tools:ignore="ContentDescription" />
 
 </RelativeLayout>
