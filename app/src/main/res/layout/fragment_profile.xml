@@ -11,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="80dp"
-        android:layout_marginLeft="30dp"
         android:background="@color/Golf">
 
         <ImageView
@@ -24,7 +24,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="75dp"
             android:background="@color/Foxtrot"
-            android:src="@drawable/ic_baseline_person_24"/>
+            android:src="@drawable/ic_baseline_person_24" />
 
         <TextView
             android:id="@+id/profile_name"
@@ -45,9 +45,9 @@
             android:layout_below="@id/profile_name"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:textSize="20sp"
+            android:text="Created account: 01/01/20"
             android:textColor="@color/white"
-            android:text="Created account: 01/01/20"/>
+            android:textSize="20sp" />
 
     </RelativeLayout>
 

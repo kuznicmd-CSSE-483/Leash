@@ -12,10 +12,28 @@
         tools:layout="@layout/fragment_events" />
 
     <fragment
+        android:id="@+id/navigation_events_edit"
+        android:name="edu.rosehulman.leash.ui.EventsEditFragment"
+        android:label="@string/events_edit"
+        tools:layout="@layout/fragment_events_edit" />
+
+    <fragment
         android:id="@+id/navigation_pets"
         android:name="edu.rosehulman.leash.ui.PetsFragment"
         android:label="@string/pets"
         tools:layout="@layout/fragment_pets" />
+
+    <fragment
+        android:id="@+id/navigation_pets_edit"
+        android:name="edu.rosehulman.leash.ui.PetsEditFragment"
+        android:label="@string/pets_edit"
+        tools:layout="@layout/fragment_pets_edit" />
+
+    <fragment
+        android:id="@+id/navigation_pets_detail"
+        android:name="edu.rosehulman.leash.ui.PetsDetailFragment"
+        android:label="@string/pets_detail"
+        tools:layout="@layout/fragment_pets_detail" />
 
     <fragment
         android:id="@+id/navigation_profile"
