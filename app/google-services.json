@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "232964755791",
+    "project_id": "leash-2022",
+    "storage_bucket": "leash-2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232964755791:android:0cfa2cdd19e29626ebb53a",
+        "android_client_info": {
+          "package_name": "edu.rosehulman.leash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232964755791-lo2lseb9sveeskebt8crgpkcu77ncq8u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtpP9sDQI9IaRH3FgIv1PSny6NWyqXTbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232964755791-lo2lseb9sveeskebt8crgpkcu77ncq8u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
