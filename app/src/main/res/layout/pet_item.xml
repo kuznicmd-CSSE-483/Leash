@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:backgroundTint="@color/Golf">
+    android:layout_marginBottom="5dp"
+    android:background="@color/Golf">
 
     <ImageView
         android:id="@+id/pet_photo_imageView"
@@ -21,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_toRightOf="@id/pet_photo_imageView"
         android:text="Pet Name"
         android:textColor="@color/white"
@@ -48,4 +49,5 @@
         android:text="Birthdate: XX/XX/XXXX "
         android:textColor="@color/white"
         android:textSize="20sp" />
+
 </RelativeLayout>
