@@ -75,12 +75,12 @@
         app:tint="@color/black" />
 
     <!-- Recycler for List of Animals -->
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/recycler_view"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:layout_below="@id/pets_textView"-->
-    <!--        android:layout_marginTop="20dp" />-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/pets_textView"
+        android:layout_marginTop="20dp" />
 
     <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton

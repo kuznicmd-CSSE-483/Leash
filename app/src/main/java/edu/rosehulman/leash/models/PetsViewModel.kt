@@ -1,13 +1,87 @@
 package edu.rosehulman.leash.models
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import edu.rosehulman.leash.Constants
+import kotlin.random.Random
 
+ /*
+  Includes CRUD Operations
+ */
 class PetsViewModel : ViewModel() {
+    // Array of Pets
+    var pets = ArrayList<Pet>()
+    var currentPos = 0
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    fun getPetAt(pos: Int) = pets[pos]
+    fun getCurrentPet() = getPetAt(currentPos)
+
+    val ref = Firebase.firestore.collection(Pet.COLLECTION_PATH)
+    val subscriptions = HashMap<String, ListenerRegistration>()
+
+    fun addListener(fragmentName: String, observer: () -> Unit) {
+        val subscription = ref
+//            .orderBy(Pet.CREATED_KEY, Query.Direction.ASCENDING)
+            .addSnapshotListener { snapshot: QuerySnapshot?, error: FirebaseFirestoreException? ->
+                error?.let {
+                    Log.d(Constants.TAG, "Error:$error")
+                    return@addSnapshotListener
+                }
+                pets.clear()
+                snapshot?.documents?.forEach {
+                    pets.add(Pet.from(it))
+                }
+                observer()
+            }
+        subscriptions[fragmentName] = subscription
     }
-    val text: LiveData<String> = _text
+
+    fun removeListener(fragmentName: String) {
+        subscriptions[fragmentName]?.remove()
+        subscriptions.remove(fragmentName)
+    }
+
+    /*
+    This method adds a random photo and a random caption.
+    // TODO: Come back and complete this method
+     */
+    fun addPet() {
+//        val random = getRandom()
+//        val ranURL = Pets.[random]
+//        val ranCap = Pets.[random]
+//
+//        // New Syntax: ?: -> Elements Operator "Elvis"
+//        // It's expression: if movieQuote is non-nullable then save movieQuote as newQuote
+//        // If movieQuote is null, do the other side of the Elvis
+//        val newPhoto = Photo(ranURL, ranCap)
+//        ref.add(newPhoto)
+    }
+
+    fun updateCurrentPet(name: String, birthdate: com.google.firebase.Timestamp, type: String) {
+        pets[currentPos].name = name
+        pets[currentPos].birthdate = birthdate
+        pets[currentPos].type = type
+        ref.document(getCurrentPet().id).set(getCurrentPet())
+    }
+
+    fun removeCurrentPet(){
+        ref.document(getCurrentPet().id).delete()
+        currentPos = 0
+    }
+
+    fun updatePos(pos: Int){
+        currentPos = pos
+    }
+
+    fun size() = pets.size
+
+    // Until is exclusive -> From 0 to 99
+    fun getRandom() = Random.nextInt(5 )
+
+
 }
