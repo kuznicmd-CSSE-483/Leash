@@ -2,6 +2,7 @@ package edu.rosehulman.leash.models
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QuerySnapshot
@@ -10,9 +11,9 @@ import com.google.firebase.ktx.Firebase
 import edu.rosehulman.leash.Constants
 import kotlin.random.Random
 
- /*
-  Includes CRUD Operations
- */
+/*
+ Includes CRUD Operations
+*/
 class PetsViewModel : ViewModel() {
     // Array of Pets
     var pets = ArrayList<Pet>()
@@ -50,38 +51,31 @@ class PetsViewModel : ViewModel() {
     This method adds a random photo and a random caption.
     // TODO: Come back and complete this method
      */
-    fun addPet() {
-//        val random = getRandom()
-//        val ranURL = Pets.[random]
-//        val ranCap = Pets.[random]
-//
-//        // New Syntax: ?: -> Elements Operator "Elvis"
-//        // It's expression: if movieQuote is non-nullable then save movieQuote as newQuote
-//        // If movieQuote is null, do the other side of the Elvis
-//        val newPhoto = Photo(ranURL, ranCap)
-//        ref.add(newPhoto)
+    fun addPet(name: String, birthdate: Timestamp, type: String) {
+        val newPet = Pet(name, birthdate, type)
+        ref.add(newPet)
     }
 
-    fun updateCurrentPet(name: String, birthdate: com.google.firebase.Timestamp, type: String) {
+    fun updateCurrentPet(name: String, birthdate: Timestamp, type: String) {
         pets[currentPos].name = name
         pets[currentPos].birthdate = birthdate
         pets[currentPos].type = type
         ref.document(getCurrentPet().id).set(getCurrentPet())
     }
 
-    fun removeCurrentPet(){
+    fun removeCurrentPet() {
         ref.document(getCurrentPet().id).delete()
         currentPos = 0
     }
 
-    fun updatePos(pos: Int){
+    fun updatePos(pos: Int) {
         currentPos = pos
     }
 
     fun size() = pets.size
 
     // Until is exclusive -> From 0 to 99
-    fun getRandom() = Random.nextInt(5 )
+    fun getRandom() = Random.nextInt(5)
 
 
 }
