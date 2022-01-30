@@ -4,18 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.rosehulman.leash.R
 import edu.rosehulman.leash.adapters.PetsAdapter
 import edu.rosehulman.leash.databinding.FragmentPetsBinding
-import edu.rosehulman.leash.models.PetsViewModel
 
 class PetsFragment : Fragment() {
 
@@ -43,8 +39,16 @@ class PetsFragment : Fragment() {
             )
         )
 
+        // Set up FAB, which allows the user to create a new pet
         binding.fab.setOnClickListener {
-            adapter.addPet()
+            this.findNavController().navigate(R.id.navigation_pets_create, null,
+                // Simple animation when sliding between pages
+                navOptions {
+                    anim {
+                        enter = android.R.anim.slide_in_left
+                        exit = android.R.anim.slide_out_right
+                    }
+                })
         }
 
         return binding.root

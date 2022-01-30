@@ -26,7 +26,7 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
      * and Firebase works **/
     init {
           // Add data to a Firestore collection
-//          Firebase.firestore.collection("Pets").add(Pet("Rudolph", Timestamp.now(), "dog"))
+          // Firebase.firestore.collection("Pets").add(Pet("Rudolph", Timestamp.now(), "dog"))
     }
 
     fun addListener(fragmentName: String) {
@@ -58,8 +58,8 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
     This is where we add a photo; Calls the add method located in the PhotosViewModel
      */
     fun addPet() {
-        model.addPet()
-        notifyDataSetChanged()
+//        model.addPet()
+//        notifyDataSetChanged()
     }
 
     inner class PetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -4,15 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import edu.rosehulman.leash.R
 import edu.rosehulman.leash.databinding.FragmentEventsBinding
-import edu.rosehulman.leash.databinding.FragmentPetsBinding
-import edu.rosehulman.leash.models.EventsViewModel
 
 class EventsFragment : Fragment() {
 
@@ -25,16 +21,17 @@ class EventsFragment : Fragment() {
     ): View? {
         binding = FragmentEventsBinding.inflate(inflater, container, false)
 
-        setupButtons()
+        binding.fab.setOnClickListener {
+            this.findNavController().navigate(R.id.navigation_events_edit, null,
+                // Simple animation when sliding between pages
+                navOptions {
+                    anim {
+                        enter = android.R.anim.slide_in_left
+                        exit = android.R.anim.slide_out_right
+                    }
+                })
+        }
 
         return binding.root
     }
-
-    fun setupButtons() {
-        // TODO: For demonstrating navigation
-        binding.fab.setOnClickListener {
-            findNavController().navigate(R.id.navigation_events_edit)
-        }
-    }
-
 }

@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_pets" />
 
     <fragment
-        android:id="@+id/navigation_pets_edit"
-        android:name="edu.rosehulman.leash.ui.PetsEditFragment"
-        android:label="@string/pets_edit"
-        tools:layout="@layout/fragment_pets_edit" />
+        android:id="@+id/navigation_pets_create"
+        android:name="edu.rosehulman.leash.ui.PetsCreateFragment"
+        android:label="@string/pets_create"
+        tools:layout="@layout/fragment_pets_create" />
 
     <fragment
         android:id="@+id/navigation_pets_detail"
