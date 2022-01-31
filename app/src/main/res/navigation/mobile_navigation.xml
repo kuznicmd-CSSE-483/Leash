@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_events">
+    app:startDestination="@+id/navigation_splash">
 
     <fragment
         android:id="@+id/navigation_events"
@@ -46,4 +46,10 @@
         android:name="edu.rosehulman.leash.ui.ProfileEditFragment"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_profile_edit" />
+
+    <fragment
+        android:id="@+id/navigation_splash"
+        android:name="edu.rosehulman.leash.ui.SplashFragment"
+        android:label="@string/title_splash"
+        tools:layout="@layout/fragment_splash" />
 </navigation>

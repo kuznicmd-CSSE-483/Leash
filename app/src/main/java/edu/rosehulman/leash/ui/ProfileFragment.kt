@@ -1,16 +1,22 @@
 package edu.rosehulman.leash.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.Timestamp
 import edu.rosehulman.leash.R
 import edu.rosehulman.leash.databinding.FragmentProfileBinding
+import edu.rosehulman.leash.models.User
+import edu.rosehulman.leash.models.UserViewModel
 
 class ProfileFragment : Fragment() {
 
+    private lateinit var model: UserViewModel
     private lateinit var binding: FragmentProfileBinding
 
     override fun onCreateView(
@@ -18,17 +24,26 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        model = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         setupButtons()
-
+        updateView()
         return binding.root
     }
 
     fun setupButtons() {
-        // TODO: For demonstrating navigation
         binding.editImageView.setOnClickListener {
             findNavController().navigate(R.id.navigation_profile_edit)
         }
+    }
+
+    fun updateView() {
+        binding.profileName.text = model.user?.name
+        binding.accountCreationDateText.text = "Created: ${timestampToString(model.user?.created!!)}"
+    }
+
+    fun timestampToString(time: Timestamp) : String{
+        return "%02d/%02d/%d".format(time.toDate().month+1, time.toDate().date, time.toDate().year+1900)
     }
 }

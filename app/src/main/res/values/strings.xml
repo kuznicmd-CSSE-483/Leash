@@ -31,6 +31,8 @@
     <string name="pets_detail">Pet Detail</string>
     <string name="profile_edit_text_hint">Name</string>
     <string name="edit_profile_save_button">SAVE</string>
+    <string name="loading">Loading...</string>
+    <string name="title_splash">Splash</string>
     <string-array name="event_type_array">
         <item>Reminder</item>
         <item>Event</item>
@@ -47,4 +49,8 @@
         <item>Monthly</item>
         <item>Annually</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">Name</string>
+    <string name="created_account_mm_dd_yyyy">Created account: MM/DD/YYYY</string>
 </resources>

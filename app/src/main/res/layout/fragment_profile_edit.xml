@@ -57,22 +57,10 @@
                 android:textColorHint="@color/Bravo"
                 android:textSize="50sp"
                 android:textStyle="bold"
-                android:text="JENNIFER SUN"
+                android:text="@string/name"
                 android:backgroundTint="@color/Hotel"
                 android:hint="@string/profile_edit_text_hint"
                 android:importantForAutofill="no" />
-
-            <TextView
-                android:id="@+id/profile_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/profile_image"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
-                android:text="JENNIFER SUN"
-                android:textColor="@color/white"
-                android:textSize="50sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/account_creation_date_text"
@@ -81,7 +69,7 @@
                 android:layout_below="@id/profile_name_editText"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="4dp"
-                android:text="Created account: 01/01/20"
+                android:text="@string/created_account_mm_dd_yyyy"
                 android:fontFamily="@font/open_sans_light"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
