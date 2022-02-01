@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.util.rangeTo
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ktx.firestore
@@ -68,9 +70,9 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
         val petBirthdateTextView: TextView = itemView.findViewById(R.id.pet_birthdate_textView)
 
         init {
-//            itemView.setOnClickListener {
-//                model.updatePos(adapterPosition)
-//                fragment.findNavController().navigate(R.id.nav_edit_photos,
+            itemView.setOnClickListener {
+                model.updatePos(adapterPosition)
+                fragment.findNavController().navigate(R.id.navigation_pets_edit,
 //                    null,
 //                    // Simple animation when sliding between pages
 //                    navOptions {
@@ -78,8 +80,9 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
 //                            enter = R.anim.slide_in_left
 //                            exit = R.anim.slide_out_right
 //                        }
-//                    })
-        }
+//                    }
+                )
+            }
 
 //            itemView.setOnLongClickListener{
 //                model.updatePos(adapterPosition)
@@ -87,7 +90,7 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
 //                model.updateCurrentPhoto(model.getCurrentPhoto().url, model.getCurrentPhoto().caption, model.getCurrentPhoto().isSelected)
 ////                notifyDataSetChanged()
 //                true
-//            }
+        }
 
         // This method needs to be fast! It can get called many many many times over!!!
         fun bind(pet: Pet) {
