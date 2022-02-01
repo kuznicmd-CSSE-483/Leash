@@ -28,7 +28,7 @@ class PetsCreateFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         model = ViewModelProvider(requireActivity()).get(PetsViewModel::class.java)
         binding = FragmentPetsCreateBinding.inflate(inflater, container, false)
 
