@@ -76,8 +76,4 @@ class PetsViewModel : ViewModel() {
 
     fun size() = pets.size
 
-    // Until is exclusive -> From 0 to 99
-    fun getRandom() = Random.nextInt(5)
-
-
 }
