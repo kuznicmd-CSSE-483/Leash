@@ -16,7 +16,9 @@ import com.google.firebase.Timestamp
 import edu.rosehulman.leash.R
 import edu.rosehulman.leash.databinding.FragmentPetsCreateBinding
 import edu.rosehulman.leash.models.PetsViewModel
+import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.time.Duration.Companion.days
 
 class PetsCreateFragment : Fragment() {
 
@@ -53,8 +55,12 @@ class PetsCreateFragment : Fragment() {
                     .build()
             datePicker.addOnPositiveButtonClickListener {
                 // Respond to positive button click.
-                // TODO: Figure out how to get correct value of date selected
-                binding.birthdateEditText.setText(datePicker.toString())
+                // DONE: Figure out how to get correct value of date selected
+                val utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+                utc.timeInMillis = it
+                val format = SimpleDateFormat("MM/dd/yyyy")
+                val formatted: String = format.format(utc.time)
+                binding.birthdateEditText.setText(formatted)
             }
             datePicker.show(parentFragmentManager, "tag");
         }
