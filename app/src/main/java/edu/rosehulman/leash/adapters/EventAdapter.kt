@@ -1,35 +1,23 @@
 package edu.rosehulman.leash.adapters
 
-
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.util.rangeTo
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import edu.rosehulman.leash.R
-import edu.rosehulman.leash.models.Pet
-import edu.rosehulman.leash.models.PetsViewModel
+import edu.rosehulman.leash.models.Event
+import edu.rosehulman.leash.models.EventsViewModel
+import edu.rosehulman.leash.ui.EventsFragment
 import edu.rosehulman.leash.ui.PetsFragment
 
-class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter.PetsViewHolder>() {
-
-    val model = ViewModelProvider(fragment.requireActivity()).get(PetsViewModel::class.java)
-
-    /** This gets fired every time an adapter is made
-     * Just added to make sure that connection between app
-     * and Firebase works **/
-    init {
-          // Add data to a Firestore collection
-          // Firebase.firestore.collection("Pets").add(Pet("Rudolph", Timestamp.now(), "dog"))
-    }
+class EventAdapter (val fragment: EventsFragment) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
+    val model = ViewModelProvider(fragment.requireActivity()).get(EventsViewModel::class.java)
 
     fun addListener(fragmentName: String) {
         model.addListener(fragmentName) {
@@ -42,37 +30,29 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
     }
 
     /** Called when RecyclerView needs a new [ViewHolder] of the given type to represent...*/
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.pet_item, parent, false)
-        return PetsViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventAdapter.EventViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.event_item, parent, false)
+        return EventViewHolder(view)
     }
 
     /** Called by RecyclerView to display the data at the specified position. This method should...*/
-    override fun onBindViewHolder(holder: PetsViewHolder, position: Int) {
-        holder.bind(model.getPetAt(position))
+    override fun onBindViewHolder(holder: EventAdapter.EventViewHolder, position: Int) {
+        holder.bind(model.getEventAt(position))
     }
 
     /** Returns the total number of items in the data set held by the adapter...*/
     override fun getItemCount() = model.size()
 
-
-    /*
-    This is where we add a photo; Calls the add method located in the PhotosViewModel
-     */
-    fun addPet() {
-//        model.addPet()
-//        notifyDataSetChanged()
-    }
-
-    inner class PetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val petNameTextView: TextView = itemView.findViewById(R.id.pet_name_textView)
-        val petTypeTextView: TextView = itemView.findViewById(R.id.pet_type_textView)
-        val petBirthdateTextView: TextView = itemView.findViewById(R.id.pet_birthdate_textView)
+    inner class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val eventNameTextView: TextView = itemView.findViewById(R.id.event_textView)
+        val eventPetTextView: TextView = itemView.findViewById(R.id.pet_name_textView)
+        val eventTimeTextView: TextView = itemView.findViewById(R.id.time_textView)
+        val eventEditImageView: ImageView = itemView.findViewById(R.id.edit_imageView)
 
         init {
-            itemView.setOnClickListener {
+            eventEditImageView.setOnClickListener {
                 model.updatePos(adapterPosition)
-                fragment.findNavController().navigate(R.id.navigation_pets_edit,
+                fragment.findNavController().navigate(R.id.navigation_events_edit,
                     null,
                     // Simple animation when sliding between pages
                     navOptions {
@@ -84,7 +64,6 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
                 )
             }
 
-            // TODO: Long Press should direct to a pet's profile page
 //            itemView.setOnLongClickListener{
 //                model.updatePos(adapterPosition)
 //                model.toggleCurrentPhoto()
@@ -94,10 +73,10 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
         }
 
         // This method needs to be fast! It can get called many many many times over!!!
-        fun bind(pet: Pet) {
-            petNameTextView.text = pet.name
-            petTypeTextView.text = "Pet Type: ${pet.type}"
-            petBirthdateTextView.text = "Birthdate: ${parseDate(pet.birthdate)}"
+        fun bind(event: Event) {
+            eventNameTextView.text = event.name
+            eventPetTextView.text = "Pet: ${event.pet}"
+            eventTimeTextView.text = "Time: ${parseDate(event.time)}"
         }
     }
 
