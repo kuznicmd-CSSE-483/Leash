@@ -54,4 +54,6 @@
     <string name="name">Name</string>
     <string name="created_account_mm_dd_yyyy">Created account: MM/DD/YYYY</string>
     <string name="events_create">Create Event</string>
+    <string name="events_edit_delete_button">delete</string>
+    <string name="pets_edit_delete_button">delete</string>
 </resources>

@@ -1,8 +1,6 @@
 package edu.rosehulman.leash.models
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
@@ -10,7 +8,6 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import edu.rosehulman.leash.Constants
-import kotlin.random.Random
 
 class EventsViewModel  : ViewModel() {
     // Array of Events
@@ -52,17 +49,17 @@ class EventsViewModel  : ViewModel() {
     This method adds a random photo and a random caption.
     // TODO: Come back and complete this method
      */
-    fun addEvent(reminder: String, name: String, time: Timestamp, alert: String, reoccurence: String, pet: String) {
-        val newEvent = Event(reminder, name, time, alert, reoccurence, pet)
+    fun addEvent(reminder: String, name: String, time: Timestamp, alert: String, recurrence: String, pet: String) {
+        val newEvent = Event(reminder, name, time, alert, recurrence, pet)
         ref.add(newEvent)
     }
 
-    fun updateCurrentEvent(reminder: String, name: String, time: Timestamp, alert: String, reoccurence: String, pet: String){
+    fun updateCurrentEvent(reminder: String, name: String, time: Timestamp, alert: String, recurrence: String, pet: String){
         events[currentPos].reminder = reminder
         events[currentPos].name = name
         events[currentPos].time = time
         events[currentPos].alert = alert
-        events[currentPos].reooccurence = reoccurence
+        events[currentPos].recurrence = recurrence
         events[currentPos].pet = pet
         ref.document(getCurrentEvent().id).set(getCurrentEvent())
     }

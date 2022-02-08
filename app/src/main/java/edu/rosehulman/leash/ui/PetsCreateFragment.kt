@@ -67,14 +67,7 @@ class PetsCreateFragment : Fragment() {
               )
 
             // Navigate back to the Pets List Fragment
-            this.findNavController().navigate(R.id.navigation_pets, null,
-                // Simple animation when sliding between pages
-                navOptions {
-                    anim {
-                        enter = android.R.anim.slide_in_left
-                        exit = android.R.anim.slide_out_right
-                    }
-                })
+            this.findNavController().navigate(R.id.navigation_pets)
         }
     }
 }

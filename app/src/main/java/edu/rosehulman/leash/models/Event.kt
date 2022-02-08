@@ -5,7 +5,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.ServerTimestamp
 
-class Event (var reminder: String = "", var name: String = "", var time: Timestamp = Timestamp.now(), var alert:String = "", var reooccurence: String = "", var pet: String = ""){
+class Event (var reminder: String = "", var name: String = "", var time: Timestamp = Timestamp.now(), var alert:String = "", var recurrence: String = "", var pet: String = ""){
 //    override fun toString(): String {
 //        return if (name.isNotBlank()) "'$name', from $type" else ""
 //    }

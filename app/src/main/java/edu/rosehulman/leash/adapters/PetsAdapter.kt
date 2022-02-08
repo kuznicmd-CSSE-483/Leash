@@ -73,17 +73,18 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
             itemView.setOnClickListener {
                 model.updatePos(adapterPosition)
                 fragment.findNavController().navigate(R.id.navigation_pets_edit,
-//                    null,
-//                    // Simple animation when sliding between pages
-//                    navOptions {
-//                        anim {
-//                            enter = R.anim.slide_in_left
-//                            exit = R.anim.slide_out_right
-//                        }
-//                    }
+                    null,
+                    // Simple animation when sliding between pages
+                    navOptions {
+                        anim {
+                            enter = R.anim.fui_slide_in_right
+                            exit = R.anim.fui_slide_out_left
+                        }
+                    }
                 )
             }
 
+            // TODO: Long Press should direct to a pet's profile page
 //            itemView.setOnLongClickListener{
 //                model.updatePos(adapterPosition)
 //                model.toggleCurrentPhoto()

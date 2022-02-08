@@ -144,7 +144,7 @@
 <!--            android:spinnerMode="dropdown" />-->
 
         <EditText
-            android:id="@+id/pet_create_ediText"
+            android:id="@+id/pet_create_editText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/recurrence_create_textView"
@@ -161,7 +161,7 @@
             android:id="@+id/pet_create_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/pet_create_ediText"
+            android:layout_below="@id/pet_create_editText"
             android:layout_alignLeft="@id/event_type_create_spinner"
             android:text="@string/events_edit_pet_type"
             android:textColor="@color/Hotel"

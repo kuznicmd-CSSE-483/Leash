@@ -131,35 +131,54 @@
             android:textColor="@color/Hotel"
             android:textSize="20sp" />
 
-        <Spinner
-            android:id="@+id/pet_spinner"
+        <EditText
+            android:id="@+id/pet_edit_editText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/recurrence_textView"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:spinnerMode="dropdown" />
+            android:backgroundTint="@color/Hotel"
+            android:fontFamily="@font/open_sans_light"
+            android:hint="@string/events_edit_pet_type_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColorHint="@color/Bravo" />
 
         <TextView
-            android:id="@+id/pet_textView"
+            android:id="@+id/pet_create_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/pet_spinner"
+            android:layout_below="@id/pet_edit_editText"
             android:layout_alignLeft="@id/event_type_spinner"
             android:text="@string/events_edit_pet_type"
             android:textColor="@color/Hotel"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"/>
 
         <Button
             android:id="@+id/save_event_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/pet_textView"
+            android:layout_below="@id/pet_create_textView"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/Golf"
             android:text="@string/events_edit_save_button"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/delete_event_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pet_create_textView"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/Golf"
+            android:text="@string/events_edit_delete_button"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

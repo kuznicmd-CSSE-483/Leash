@@ -67,18 +67,6 @@
             android:inputType="none"
             android:textColorHint="@color/Bravo" />
 
-        <!--    <TextView-->
-        <!--        android:id="@+id/birthdate_editText"-->
-        <!--        android:layout_width="300dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_below="@id/name_textView"-->
-        <!--        android:layout_centerHorizontal="true"-->
-        <!--        android:layout_marginTop="20dp"-->
-        <!--        android:backgroundTint="@color/Hotel"-->
-        <!--        android:fontFamily="@font/open_sans_light"-->
-        <!--        android:text="____________________________________________________"-->
-        <!--        android:textColorHint="@color/Bravo" />-->
-
         <TextView
             android:id="@+id/birthdate_edit_textView"
             android:layout_width="match_parent"
@@ -111,7 +99,8 @@
             android:layout_alignLeft="@id/pet_type_edit_editText"
             android:text="@string/pets_edit_pet_type"
             android:textColor="@color/Hotel"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"/>
 
         <Button
             android:id="@+id/save_pet_edit_button"
@@ -123,6 +112,19 @@
             android:layout_marginRight="20dp"
             android:backgroundTint="@color/Golf"
             android:text="@string/pets_edit_save_button"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/delete_pet_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pet_type_edit_textView"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="20dp"
+            android:backgroundTint="@color/Golf"
+            android:text="@string/pets_edit_delete_button"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

@@ -64,17 +64,9 @@ class EventsCreateFragment : Fragment() {
         binding.saveEventCreateButton.setOnClickListener {
             model.addEvent(binding.eventTypeCreateSpinner.selectedItem.toString(), binding.nameCreateEditText.text.toString(),
                 Timestamp.now(), binding.alertCreateSpinner.selectedItem.toString(), binding.recurrenceCreateSpinner.selectedItem.toString(),
-                binding.petCreateEdiText.text.toString()
+                binding.petCreateEditText.text.toString()
             )
-            // Navigate back to the Pets List Fragment
-            this.findNavController().navigate(R.id.navigation_events, null,
-                // Simple animation when sliding between pages
-                navOptions {
-                    anim {
-                        enter = android.R.anim.slide_in_left
-                        exit = android.R.anim.slide_out_right
-                    }
-                })
+            this.findNavController().navigate(R.id.navigation_events)
         }
     }
 

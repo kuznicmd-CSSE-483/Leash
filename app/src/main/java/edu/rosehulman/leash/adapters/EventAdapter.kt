@@ -3,9 +3,11 @@ package edu.rosehulman.leash.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
 import edu.rosehulman.leash.R
@@ -45,19 +47,20 @@ class EventAdapter (val fragment: EventsFragment) : RecyclerView.Adapter<EventAd
         val eventNameTextView: TextView = itemView.findViewById(R.id.event_textView)
         val eventPetTextView: TextView = itemView.findViewById(R.id.pet_name_textView)
         val eventTimeTextView: TextView = itemView.findViewById(R.id.time_textView)
+        val eventEditImageView: ImageView = itemView.findViewById(R.id.edit_imageView)
 
         init {
-            itemView.setOnClickListener {
+            eventEditImageView.setOnClickListener {
                 model.updatePos(adapterPosition)
                 fragment.findNavController().navigate(R.id.navigation_events_edit,
-//                    null,
-//                    // Simple animation when sliding between pages
-//                    navOptions {
-//                        anim {
-//                            enter = R.anim.slide_in_left
-//                            exit = R.anim.slide_out_right
-//                        }
-//                    }
+                    null,
+                    // Simple animation when sliding between pages
+                    navOptions {
+                        anim {
+                            enter = R.anim.fui_slide_in_right
+                            exit = R.anim.fui_slide_out_left
+                        }
+                    }
                 )
             }
 
