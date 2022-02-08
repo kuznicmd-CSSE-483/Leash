@@ -34,12 +34,12 @@ class EventsFragment : Fragment() {
         // Make the items show up in a grid, with 3 items in each row
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                requireContext(),
-                DividerItemDecoration.VERTICAL
-            )
-        )
+//        binding.recyclerView.addItemDecoration(
+//            DividerItemDecoration(
+//                requireContext(),
+//                DividerItemDecoration.VERTICAL
+//            )
+//        )
 
         // Set up FAB, which allows the user to create a new pet
         binding.fab.setOnClickListener {

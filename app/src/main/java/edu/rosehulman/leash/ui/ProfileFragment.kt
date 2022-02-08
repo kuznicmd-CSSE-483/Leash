@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import edu.rosehulman.leash.R
 import edu.rosehulman.leash.databinding.FragmentProfileBinding
 import edu.rosehulman.leash.models.User
@@ -33,6 +35,10 @@ class ProfileFragment : Fragment() {
     }
 
     fun setupButtons() {
+        binding.logoutButton.setOnClickListener {
+            model.user = null
+            Firebase.auth.signOut()
+        }
         binding.editImageView.setOnClickListener {
             findNavController().navigate(R.id.navigation_profile_edit)
         }

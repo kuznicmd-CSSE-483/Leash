@@ -4,50 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:layout_marginBottom="5dp"
-    android:background="@color/Golf">
+    android:layout_marginBottom="5dp">
 
-    <ImageView
-        android:id="@+id/pet_photo_imageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginVertical="15dp"
-        android:layout_marginLeft="40dp"
-        android:contentDescription="Image"
-        android:src="@drawable/ic_baseline_pets_24"
-        app:tint="@color/white" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="375dp"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="25dp">
 
-    <TextView
-        android:id="@+id/pet_name_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="25dp"
-        android:layout_toRightOf="@id/pet_photo_imageView"
-        android:text="Pet Name"
-        android:textColor="@color/white"
-        android:textSize="40sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/Golf">
 
-    <TextView
-        android:id="@+id/pet_type_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pet_name_textView"
-        android:layout_marginLeft="50dp"
-        android:layout_toRightOf="@id/pet_photo_imageView"
-        android:text="Pet Type: Cat"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/pet_photo_imageView"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginVertical="15dp"
+                android:layout_marginLeft="40dp"
+                android:contentDescription="Image"
+                android:src="@drawable/ic_baseline_pets_24"
+                app:tint="@color/white" />
 
-    <TextView
-        android:id="@+id/pet_birthdate_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pet_type_textView"
-        android:layout_marginLeft="50dp"
-        android:layout_toRightOf="@id/pet_photo_imageView"
-        android:text="Birthdate: XX/XX/XXXX "
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/pet_name_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="25dp"
+                android:layout_toRightOf="@id/pet_photo_imageView"
+                android:text="Pet Name"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
 
+            <TextView
+                android:id="@+id/pet_type_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pet_name_textView"
+                android:layout_marginLeft="50dp"
+                android:layout_toRightOf="@id/pet_photo_imageView"
+                android:text="Pet Type: Cat"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/pet_birthdate_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pet_type_textView"
+                android:layout_marginLeft="50dp"
+                android:layout_toRightOf="@id/pet_photo_imageView"
+                android:text="Birthdate: XX/XX/XXXX "
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

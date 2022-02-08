@@ -36,12 +36,12 @@ class PetsFragment : Fragment() {
         // Make the items show up in a grid, with 3 items in each row
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                requireContext(),
-                DividerItemDecoration.VERTICAL
-            )
-        )
+//        binding.recyclerView.addItemDecoration(
+//            DividerItemDecoration(
+//                requireContext(),
+//                DividerItemDecoration.VERTICAL
+//            )
+//        )
 
         // Header of Pets List Fragment
         val names = model.user?.name?.split("\\s".toRegex())
