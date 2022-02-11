@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -98,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             .setAvailableProviders(providers)
             .setIsSmartLockEnabled(false)
             .setTheme(R.style.Theme_Leash)
-            .setLogo(R.drawable.ic_baseline_person_24)
+            .setLogo(R.drawable.ic_collar)
             .build()
         signinLauncher.launch(signinIntent)
     }
