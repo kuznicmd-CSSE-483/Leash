@@ -29,16 +29,22 @@
         <entry key="..\:/Users/kuznicmd/CSSE 483/Leash/app/src/main/res/layout/fragment_profile_edit.xml" value="0.15806159420289856" />
         <entry key="..\:/Users/kuznicmd/CSSE 483/Leash/app/src/main/res/layout/pet_item.xml" value="0.264" />
         <entry key="..\:/Users/kuznicmd/CSSE 483/Leash/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.19" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/font/open_sans_light.xml" value="0.284375" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/color_spinner_layout.xml" value="0.264" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/event_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/fragment_events.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/fragment_events_create.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/fragment_events_edit.xml" value="0.24452554744525548" />
+        <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/fragment_pets.xml" value="0.264" />
+        <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/fragment_pets_create.xml" value="0.151268115942029" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/fragment_pets_detail.xml" value="0.17766497461928935" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/fragment_pets_edit.xml" value="0.264" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/fragment_profile_edit.xml" value="0.1" />
+        <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/fragment_splash.xml" value="0.1" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/pet_item.xml" value="0.2368659420289855" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/layout/spinner_dropdown_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/scottjm1/git/Leash/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
