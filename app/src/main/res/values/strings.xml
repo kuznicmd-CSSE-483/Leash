@@ -10,7 +10,7 @@
     <string name="pets_detail_reminders">Reminders</string>
     <string name="pets_edit_name_hint">Name</string>
     <string name="pets_edit_name">Pet Name</string>
-    <string name="pets_edit_birthdate_hint">Mon, Jan 1st 2022</string>
+    <string name="pets_edit_birthdate_hint">Jan 1 2022</string>
     <string name="pets_edit_birthdate">Birthdate</string>
     <string name="pets_edit_pet_type_hint">Pet Type</string>
     <string name="pets_edit_pet_type">Pet Type</string>

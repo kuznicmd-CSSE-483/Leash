@@ -8,17 +8,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.Timestamp
+import edu.rosehulman.leash.Constants
 import edu.rosehulman.leash.R
 import edu.rosehulman.leash.databinding.FragmentPetsCreateBinding
 import edu.rosehulman.leash.models.PetsViewModel
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.time.Duration.Companion.days
 
 class PetsCreateFragment : Fragment() {
 
@@ -54,13 +53,13 @@ class PetsCreateFragment : Fragment() {
                     .setCalendarConstraints(constraintsBuilder.build())
                     .build()
             datePicker.addOnPositiveButtonClickListener {
-                // Respond to positive button click.
-                // DONE: Figure out how to get correct value of date selected
-                val utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-                utc.timeInMillis = it
-                val format = SimpleDateFormat("MM/dd/yyyy")
-                val formatted: String = format.format(utc.time)
-                binding.birthdateEditText.setText(formatted)
+
+                val formatter = SimpleDateFormat("dd/MM/yyyy")
+                val dateString = formatter.format(datePicker.selection?.let { it1 -> Date(it1) })
+                // Date String is off by a day...
+                Log.d(Constants.TAG, "${dateString}")
+
+                binding.birthdateEditText.setText(datePicker.headerText)
             }
             datePicker.show(parentFragmentManager, "tag");
         }

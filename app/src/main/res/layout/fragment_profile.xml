@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ProfileFragment">
+    tools:context=".ui.ProfileFragment"
+    android:background="@color/Foxtrot" >
 
     <androidx.cardview.widget.CardView
         android:layout_width="375dp"
@@ -78,8 +79,8 @@
                 android:layout_marginRight="20dp"
                 android:backgroundTint="@color/Foxtrot"
                 android:text="@string/logout_button"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textColor="@color/Bravo"
+                android:textSize="20sp"/>
 
         </RelativeLayout>
 
