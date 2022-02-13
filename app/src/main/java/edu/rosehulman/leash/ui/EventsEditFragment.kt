@@ -87,6 +87,11 @@ class EventsEditFragment : Fragment() {
 
     // TODO: Fix time parameter, for now uses timestamp.now()
     fun setupButtons() {
+
+        // TODO: SELECTING
+
+
+
         binding.saveEventButton.setOnClickListener{
             model.updateCurrentEvent(binding.eventTypeSpinner.selectedItem.toString(), binding.nameEditText.text.toString(),
                 Timestamp.now(), binding.alertSpinner.selectedItem.toString(), binding.recurrenceSpinner.selectedItem.toString(),
