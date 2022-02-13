@@ -25,6 +25,8 @@ class PetsCreateFragment : Fragment() {
 
     private lateinit var binding: FragmentPetsCreateBinding
 
+    private lateinit var timestamp: Date
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,11 +56,7 @@ class PetsCreateFragment : Fragment() {
                     .build()
             datePicker.addOnPositiveButtonClickListener {
 
-                val formatter = SimpleDateFormat("dd/MM/yyyy")
-                val dateString = formatter.format(datePicker.selection?.let { it1 -> Date(it1) })
-                // Date String is off by a day...
-                Log.d(Constants.TAG, "${dateString}")
-
+                timestamp = datePicker.selection?.let { it1 -> Date(it1) }!!
                 binding.birthdateEditText.setText(datePicker.headerText)
             }
             datePicker.show(parentFragmentManager, "tag");
@@ -67,7 +65,7 @@ class PetsCreateFragment : Fragment() {
         // Logic for saving pet
         // TODO: Timestamp is set now; should come from selected date from above
         binding.savePetButton.setOnClickListener {
-              model.addPet(binding.nameEditText.text.toString(), Timestamp.now(),
+              model.addPet(binding.nameEditText.text.toString(), Timestamp(timestamp),
                   binding.petTypeEditText.text.toString().lowercase(Locale.getDefault())
               )
 
