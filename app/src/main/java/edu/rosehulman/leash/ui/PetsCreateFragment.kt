@@ -68,7 +68,6 @@ class PetsCreateFragment : Fragment() {
         }
 
         // Logic for saving pet
-        // TODO: Timestamp is set now; should come from selected date from above
         binding.savePetButton.setOnClickListener {
               model.addPet(binding.nameEditText.text.toString(), Timestamp(timestamp),
                   binding.petTypeEditText.text.toString().lowercase(Locale.getDefault())
