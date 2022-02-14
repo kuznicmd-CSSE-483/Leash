@@ -1,6 +1,7 @@
 package edu.rosehulman.leash.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,17 +12,24 @@ import androidx.navigation.navOptions
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.Timestamp
+import edu.rosehulman.leash.Constants
 import edu.rosehulman.leash.R
 import edu.rosehulman.leash.databinding.FragmentEventsCreateBinding
 import edu.rosehulman.leash.models.EventsViewModel
+import java.lang.Integer.parseInt
+import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.time.Duration.Companion.milliseconds
 
 class EventsCreateFragment : Fragment() {
 
     private lateinit var model: EventsViewModel
-
     private lateinit var binding: FragmentEventsCreateBinding
+    private lateinit var date: String
+    private lateinit var timestamp: Date
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +39,8 @@ class EventsCreateFragment : Fragment() {
         model = ViewModelProvider(requireActivity()).get(EventsViewModel::class.java)
         binding = FragmentEventsCreateBinding.inflate(inflater, container, false)
 
+        timestamp = Timestamp.now().toDate()
+
         setupButtons()
 
         return binding.root
@@ -38,12 +48,10 @@ class EventsCreateFragment : Fragment() {
 
     fun setupButtons() {
         // Logic for choosing a time
-        // TODO: Change, as they can be future dates
         binding.timeCreateEditText.setOnClickListener {
             val constraintsBuilder =
                 CalendarConstraints.Builder()
                     .setValidator(DateValidatorPointBackward.now())
-
             val datePicker =
                 MaterialDatePicker.Builder.datePicker()
                     .setTitleText("Select date")
@@ -52,18 +60,32 @@ class EventsCreateFragment : Fragment() {
                     .setCalendarConstraints(constraintsBuilder.build())
                     .build()
             datePicker.addOnPositiveButtonClickListener {
-                // Respond to positive button click.
-                // TODO: Figure out how to get correct value of date selected
-                binding.timeCreateEditText.setText(datePicker.toString())
+                datePicker.dismiss()
+                binding.timeCreateEditText.setText(datePicker.headerText)
+                val formatter = SimpleDateFormat("dd/MM/yyyy")
+                date = formatter.format(datePicker.selection?.let { it1 -> Date(it1) })
+                var year = parseInt("${date.subSequence(6,10)}")
+                var month = parseInt("${date.subSequence(3,5)}")
+                var day = parseInt("${date.subSequence(0,2)}")
+
+                val picker =
+                    MaterialTimePicker.Builder()
+                        .setTimeFormat(TimeFormat.CLOCK_24H)
+                        .setTitleText("Select Event time")
+                        .build()
+                picker.addOnPositiveButtonClickListener{
+                    timestamp = Date(year, month-1, day+1, picker.hour, picker.minute)
+                    binding.timeCreateEditText.setText(Timestamp(timestamp).toDate().toString())
+                }
+                picker.show(parentFragmentManager, "tag")
             }
-            datePicker.show(parentFragmentManager, "tag");
+            datePicker.show(parentFragmentManager, "tag")
         }
 
         // Logic for saving event
-        // TODO: Timestamp is set now; should come from selected date from above
         binding.saveEventCreateButton.setOnClickListener {
             model.addEvent(binding.eventTypeCreateSpinner.selectedItem.toString(), binding.nameCreateEditText.text.toString(),
-                Timestamp.now(), binding.alertCreateSpinner.selectedItem.toString(), binding.recurrenceCreateSpinner.selectedItem.toString(),
+                Timestamp(timestamp), binding.alertCreateSpinner.selectedItem.toString(), binding.recurrenceCreateSpinner.selectedItem.toString(),
                 binding.petCreateEditText.text.toString()
             )
             this.findNavController().navigate(R.id.navigation_events)

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.util.rangeTo
 import androidx.lifecycle.ViewModelProvider
@@ -67,10 +68,11 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
     inner class PetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val petNameTextView: TextView = itemView.findViewById(R.id.pet_name_textView)
         val petTypeTextView: TextView = itemView.findViewById(R.id.pet_type_textView)
+        val eventEditImageView: ImageView = itemView.findViewById(R.id.edit_imageView)
         val petBirthdateTextView: TextView = itemView.findViewById(R.id.pet_birthdate_textView)
 
         init {
-            itemView.setOnClickListener {
+            eventEditImageView.setOnClickListener {
                 model.updatePos(adapterPosition)
                 fragment.findNavController().navigate(R.id.navigation_pets_edit,
                     null,
@@ -84,13 +86,11 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
                 )
             }
 
-            // TODO: Long Press should direct to a pet's profile page
-//            itemView.setOnLongClickListener{
-//                model.updatePos(adapterPosition)
-//                model.toggleCurrentPhoto()
-//                model.updateCurrentPhoto(model.getCurrentPhoto().url, model.getCurrentPhoto().caption, model.getCurrentPhoto().isSelected)
-////                notifyDataSetChanged()
-//                true
+            itemView.setOnClickListener {
+                model.updatePos(adapterPosition)
+                fragment.findNavController().navigate(R.id.navigation_pets_detail)
+                true
+            }
         }
 
         // This method needs to be fast! It can get called many many many times over!!!
@@ -102,6 +102,6 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
     }
 
     fun parseDate(time: Timestamp): String {
-        return "${time.toDate().month + 1}/${time.toDate().date.toString()}/${time.toDate().year.toString().substring(1,3)}"
+        return "${time.toDate().month + 1}/${time.toDate().date.toString()}/${time.toDate().year.toString()}"
     }
 }

@@ -58,6 +58,18 @@
                 android:text="At: 10:00AM"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/date_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="1/2"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

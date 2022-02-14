@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ProfileFragment">
+    tools:context=".ui.ProfileFragment"
+    android:background="@color/Foxtrot" >
 
     <androidx.cardview.widget.CardView
         android:layout_width="375dp"
@@ -66,7 +67,8 @@
                 android:text="Created account: 01/01/20"
                 android:fontFamily="@font/open_sans_light"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
             <Button
                 android:id="@+id/logout_button"
@@ -78,8 +80,8 @@
                 android:layout_marginRight="20dp"
                 android:backgroundTint="@color/Foxtrot"
                 android:text="@string/logout_button"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textColor="@color/Bravo"
+                android:textSize="20sp"/>
 
         </RelativeLayout>
 

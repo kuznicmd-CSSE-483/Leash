@@ -22,7 +22,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginVertical="15dp"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="20dp"
                 android:contentDescription="Image"
                 android:src="@drawable/ic_baseline_pets_24"
                 app:tint="@color/white" />
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="30dp"
                 android:layout_toRightOf="@id/pet_photo_imageView"
                 android:text="Pet Name"
                 android:textColor="@color/white"
@@ -59,6 +59,17 @@
                 android:text="Birthdate: XX/XX/XXXX "
                 android:textColor="@color/white"
                 android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/edit_imageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:contentDescription="Image"
+                android:src="@drawable/ic_baseline_edit_24"
+                app:tint="@color/white" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

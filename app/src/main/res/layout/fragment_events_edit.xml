@@ -80,7 +80,8 @@
             android:fontFamily="@font/open_sans_light"
             android:hint="@string/events_edit_time_hint"
             android:importantForAutofill="no"
-            android:inputType="text"
+            android:focusable="false"
+            android:inputType="none"
             android:textColorHint="@color/Bravo" />
 
         <TextView

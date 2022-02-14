@@ -48,6 +48,7 @@ class EventAdapter (val fragment: EventsFragment) : RecyclerView.Adapter<EventAd
         val eventPetTextView: TextView = itemView.findViewById(R.id.pet_name_textView)
         val eventTimeTextView: TextView = itemView.findViewById(R.id.time_textView)
         val eventEditImageView: ImageView = itemView.findViewById(R.id.edit_imageView)
+        val eventDateTextView: TextView = itemView.findViewById(R.id.date_textView)
 
         init {
             eventEditImageView.setOnClickListener {
@@ -63,24 +64,22 @@ class EventAdapter (val fragment: EventsFragment) : RecyclerView.Adapter<EventAd
                     }
                 )
             }
-
-//            itemView.setOnLongClickListener{
-//                model.updatePos(adapterPosition)
-//                model.toggleCurrentPhoto()
-//                model.updateCurrentPhoto(model.getCurrentPhoto().url, model.getCurrentPhoto().caption, model.getCurrentPhoto().isSelected)
-////                notifyDataSetChanged()
-//                true
         }
 
         // This method needs to be fast! It can get called many many many times over!!!
         fun bind(event: Event) {
             eventNameTextView.text = event.name
             eventPetTextView.text = "Pet: ${event.pet}"
-            eventTimeTextView.text = "Time: ${parseDate(event.time)}"
+            eventTimeTextView.text = "Time: ${parseTime(event.time)}"
+            eventDateTextView.text = "${parseDate(event.time)}"
         }
     }
 
     fun parseDate(time: Timestamp): String {
-        return "${time.toDate().month + 1}/${time.toDate().date.toString()}/${time.toDate().year.toString().substring(1,3)}"
+        return "${time.toDate().month + 1}/${time.toDate().date.toString()}"
+    }
+
+    fun parseTime(time: Timestamp): String {
+        return "${time.toDate().hours.toString()}:${time.toDate().minutes.toString()}"
     }
 }
