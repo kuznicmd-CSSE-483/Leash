@@ -67,7 +67,8 @@
                 android:text="Created account: 01/01/20"
                 android:fontFamily="@font/open_sans_light"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
             <Button
                 android:id="@+id/logout_button"
