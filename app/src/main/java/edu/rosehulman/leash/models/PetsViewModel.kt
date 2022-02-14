@@ -49,10 +49,6 @@ class PetsViewModel : ViewModel() {
         subscriptions.remove(fragmentName)
     }
 
-    /*
-    This method adds a random photo and a random caption.
-    // TODO: Come back and complete this method
-     */
     fun addPet(name: String, birthdate: Timestamp, type: String) {
         val newPet = Pet(name, birthdate, type)
         ref.add(newPet)

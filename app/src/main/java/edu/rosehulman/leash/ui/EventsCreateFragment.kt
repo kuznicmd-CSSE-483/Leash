@@ -5,12 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -41,6 +44,46 @@ class EventsCreateFragment : Fragment() {
 
         timestamp = Timestamp.now().toDate()
 
+        // Set up Spinners
+        val eventTypeSpinner: Spinner = binding.eventTypeCreateSpinner
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.event_type_array,
+            R.layout.color_spinner_layout
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
+            // Apply the adapter to the spinner
+            eventTypeSpinner.adapter = adapter
+        }
+
+        val alertSpinner: Spinner = binding.alertCreateSpinner
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.alert_array,
+            R.layout.color_spinner_layout
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
+            // Apply the adapter to the spinner
+            alertSpinner.adapter = adapter
+        }
+
+        val recurrenceSpinner: Spinner = binding.recurrenceCreateSpinner
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.recurrence_array,
+            R.layout.color_spinner_layout
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
+            // Apply the adapter to the spinner
+            recurrenceSpinner.adapter = adapter
+        }
+
         setupButtons()
 
         return binding.root
@@ -49,9 +92,16 @@ class EventsCreateFragment : Fragment() {
     fun setupButtons() {
         // Logic for choosing a time
         binding.timeCreateEditText.setOnClickListener {
+            if (binding.eventTypeCreateSpinner.selectedItem.toString() == "Event") {
+                binding.recurrenceCreateSpinner.setEnabled(false)
+                binding.recurrenceCreateSpinner.setSelection(0)
+            }
+            else {
+                binding.recurrenceCreateSpinner.setEnabled(true)
+            }
             val constraintsBuilder =
                 CalendarConstraints.Builder()
-                    .setValidator(DateValidatorPointBackward.now())
+                    .setValidator(DateValidatorPointForward.now())
             val datePicker =
                 MaterialDatePicker.Builder.datePicker()
                     .setTitleText("Select date")
@@ -82,8 +132,33 @@ class EventsCreateFragment : Fragment() {
             datePicker.show(parentFragmentManager, "tag")
         }
 
+        // The following click listeners are meant to disable the reoccurrence spinner
+        // if the event type is "Event", as this will not reoccur.
+        binding.nameCreateEditText.setOnClickListener {
+            if (binding.eventTypeCreateSpinner.selectedItem.toString() == "Event") {
+                binding.recurrenceCreateSpinner.setEnabled(false)
+                binding.recurrenceCreateSpinner.setSelection(0)
+            }
+            else {
+                binding.recurrenceCreateSpinner.setEnabled(true)
+            }
+        }
+
+        binding.petCreateEditText.setOnClickListener {
+            if (binding.eventTypeCreateSpinner.selectedItem.toString() == "Event") {
+                binding.recurrenceCreateSpinner.setEnabled(false)
+                binding.recurrenceCreateSpinner.setSelection(0)
+            }
+            else {
+                binding.recurrenceCreateSpinner.setEnabled(true)
+            }
+        }
+
         // Logic for saving event
         binding.saveEventCreateButton.setOnClickListener {
+            if (binding.eventTypeCreateSpinner.selectedItem.toString() == "Event") {
+                binding.recurrenceCreateSpinner.setEnabled(false)
+            }
             model.addEvent(binding.eventTypeCreateSpinner.selectedItem.toString(), binding.nameCreateEditText.text.toString(),
                 Timestamp(timestamp), binding.alertCreateSpinner.selectedItem.toString(), binding.recurrenceCreateSpinner.selectedItem.toString(),
                 binding.petCreateEditText.text.toString()

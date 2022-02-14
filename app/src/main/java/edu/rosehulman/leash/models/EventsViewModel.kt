@@ -45,10 +45,6 @@ class EventsViewModel  : ViewModel() {
         subscriptions.remove(fragmentName)
     }
 
-    /*
-    This method adds a random photo and a random caption.
-    // TODO: Come back and complete this method
-     */
     fun addEvent(reminder: String, name: String, time: Timestamp, alert: String, recurrence: String, pet: String) {
         val newEvent = Event(reminder, name, time, alert, recurrence, pet)
         ref.add(newEvent)

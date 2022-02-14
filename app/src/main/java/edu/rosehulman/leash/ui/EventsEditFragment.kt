@@ -1,6 +1,7 @@
 package edu.rosehulman.leash.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +12,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.Timestamp
+import edu.rosehulman.leash.Constants
 import edu.rosehulman.leash.R
 import edu.rosehulman.leash.databinding.FragmentEventsEditBinding
 import edu.rosehulman.leash.models.EventsViewModel
@@ -94,14 +97,27 @@ class EventsEditFragment : Fragment() {
         binding.recurrenceSpinner.setSelection(resources.getStringArray(R.array.recurrence_array)
             .indexOf(model.getCurrentEvent().recurrence))
         binding.petEditEditText.setText(model.getCurrentEvent().pet)
+        if (model.getCurrentEvent().reminder == "Event") {
+            binding.recurrenceSpinner.setEnabled(false)
+        }
+        else {
+            binding.recurrenceSpinner.setEnabled(true)
+        }
     }
 
-    // TODO: Fix time parameter, for now uses timestamp.now()
     fun setupButtons() {
         binding.timeEditText.setOnClickListener {
+            if (binding.eventTypeSpinner.selectedItem.toString() == "Event") {
+                Log.d(Constants.TAG, "On EVENT")
+                binding.recurrenceSpinner.setEnabled(false)
+                binding.recurrenceSpinner.setSelection(0)
+            }
+            else {
+                binding.recurrenceSpinner.setEnabled(true)
+            }
             val constraintsBuilder =
                 CalendarConstraints.Builder()
-                    .setValidator(DateValidatorPointBackward.now())
+                    .setValidator(DateValidatorPointForward.now())
             val datePicker =
                 MaterialDatePicker.Builder.datePicker()
                     .setTitleText("Select date")
@@ -131,7 +147,34 @@ class EventsEditFragment : Fragment() {
             datePicker.show(parentFragmentManager, "tag")
         }
 
+        // The following click listeners are meant to disable the reoccurrence spinner
+        // if the event type is "Event", as this will not reoccur.
+        binding.nameEditText.setOnClickListener {
+            if (binding.eventTypeSpinner.selectedItem.toString() == "Event") {
+                Log.d(Constants.TAG, "On EVENT")
+                binding.recurrenceSpinner.setEnabled(false)
+                binding.recurrenceSpinner.setSelection(0)
+            }
+            else {
+                binding.recurrenceSpinner.setEnabled(true)
+            }
+        }
+
+        binding.petEditEditText.setOnClickListener {
+            if (binding.eventTypeSpinner.selectedItem.toString() == "Event") {
+                Log.d(Constants.TAG, "On EVENT")
+                binding.recurrenceSpinner.setEnabled(false)
+                binding.recurrenceSpinner.setSelection(0)
+            }
+            else {
+                binding.recurrenceSpinner.setEnabled(true)
+            }
+        }
+
         binding.saveEventButton.setOnClickListener{
+            if (binding.eventTypeSpinner.selectedItem.toString() == "Event") {
+                binding.recurrenceSpinner.setEnabled(false)
+            }
             model.updateCurrentEvent(binding.eventTypeSpinner.selectedItem.toString(), binding.nameEditText.text.toString(),
                 Timestamp(timestamp), binding.alertSpinner.selectedItem.toString(), binding.recurrenceSpinner.selectedItem.toString(),
                 binding.petEditEditText.text.toString()

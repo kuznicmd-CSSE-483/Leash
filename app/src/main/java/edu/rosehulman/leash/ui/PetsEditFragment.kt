@@ -48,7 +48,6 @@ class PetsEditFragment : Fragment() {
         binding.petTypeEditEditText.setText(model.getCurrentPet().type)
     }
 
-    // TODO: Fix time parameter, for now uses timestamp.now()...
     fun setupButtons() {
         // Logic for choosing a birthdate
         binding.birthdateEditEditText.setOnClickListener {
