@@ -22,9 +22,8 @@ import java.util.*
 class PetsCreateFragment : Fragment() {
 
     private lateinit var model: PetsViewModel
-
     private lateinit var binding: FragmentPetsCreateBinding
-
+    private lateinit var date: String
     private lateinit var timestamp: Date
 
     override fun onCreateView(
@@ -34,6 +33,8 @@ class PetsCreateFragment : Fragment() {
     ): View {
         model = ViewModelProvider(requireActivity()).get(PetsViewModel::class.java)
         binding = FragmentPetsCreateBinding.inflate(inflater, container, false)
+
+        timestamp = Timestamp.now().toDate()
 
         setupButtons()
 
@@ -55,9 +56,13 @@ class PetsCreateFragment : Fragment() {
                     .setCalendarConstraints(constraintsBuilder.build())
                     .build()
             datePicker.addOnPositiveButtonClickListener {
-
-                timestamp = datePicker.selection?.let { it1 -> Date(it1) }!!
-                binding.birthdateEditText.setText(datePicker.headerText)
+                val formatter = SimpleDateFormat("dd/MM/yyyy")
+                date = formatter.format(datePicker.selection?.let { it1 -> Date(it1) })
+                var year = Integer.parseInt("${date.subSequence(6, 10)}")
+                var month = Integer.parseInt("${date.subSequence(3, 5)}")
+                var day = Integer.parseInt("${date.subSequence(0, 2)}")
+                timestamp = Date(year, month-1, day+1)
+                binding.birthdateEditText.setText(Timestamp(timestamp).toDate().toString())
             }
             datePicker.show(parentFragmentManager, "tag");
         }

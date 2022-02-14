@@ -27,13 +27,8 @@ import kotlin.time.Duration.Companion.milliseconds
 class EventsCreateFragment : Fragment() {
 
     private lateinit var model: EventsViewModel
-
     private lateinit var binding: FragmentEventsCreateBinding
-
     private lateinit var date: String
-
-    private lateinit var time: String
-
     private lateinit var timestamp: Date
 
     override fun onCreateView(
@@ -43,6 +38,8 @@ class EventsCreateFragment : Fragment() {
     ): View {
         model = ViewModelProvider(requireActivity()).get(EventsViewModel::class.java)
         binding = FragmentEventsCreateBinding.inflate(inflater, container, false)
+
+        timestamp = Timestamp.now().toDate()
 
         setupButtons()
 
@@ -77,7 +74,8 @@ class EventsCreateFragment : Fragment() {
                         .setTitleText("Select Event time")
                         .build()
                 picker.addOnPositiveButtonClickListener{
-                    timestamp = Date(year, month, day, picker.hour, picker.minute)
+                    timestamp = Date(year, month-1, day+1, picker.hour, picker.minute)
+                    binding.timeCreateEditText.setText(Timestamp(timestamp).toDate().toString())
                 }
                 picker.show(parentFragmentManager, "tag")
             }
@@ -85,7 +83,6 @@ class EventsCreateFragment : Fragment() {
         }
 
         // Logic for saving event
-        // TODO: Timestamp is set now; should come from selected date from above
         binding.saveEventCreateButton.setOnClickListener {
             model.addEvent(binding.eventTypeCreateSpinner.selectedItem.toString(), binding.nameCreateEditText.text.toString(),
                 Timestamp(timestamp), binding.alertCreateSpinner.selectedItem.toString(), binding.recurrenceCreateSpinner.selectedItem.toString(),

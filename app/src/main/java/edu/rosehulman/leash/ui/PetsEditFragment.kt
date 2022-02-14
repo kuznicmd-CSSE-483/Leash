@@ -15,16 +15,16 @@ import edu.rosehulman.leash.R
 import edu.rosehulman.leash.databinding.FragmentPetsCreateBinding
 import edu.rosehulman.leash.databinding.FragmentPetsEditBinding
 import edu.rosehulman.leash.models.PetsViewModel
+import java.sql.Time
+import java.text.SimpleDateFormat
 import java.util.*
 
 class PetsEditFragment : Fragment() {
 
-
     private lateinit var model: PetsViewModel
-
     private lateinit var binding: FragmentPetsEditBinding
-
-    private lateinit var timestamp: Date
+    var date: String = ""
+    var timestamp: Date? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +33,8 @@ class PetsEditFragment : Fragment() {
     ): View {
         model = ViewModelProvider(requireActivity()).get(PetsViewModel::class.java)
         binding = FragmentPetsEditBinding.inflate(inflater, container, false)
+
+        timestamp = model.getCurrentPet().birthdate.toDate()
 
         updateView()
         setupButtons()
@@ -62,16 +64,23 @@ class PetsEditFragment : Fragment() {
                     .setCalendarConstraints(constraintsBuilder.build())
                     .build()
             datePicker.addOnPositiveButtonClickListener {
-
-                timestamp = datePicker.selection?.let { it1 -> Date(it1) }!!
-                binding.birthdateEditEditText.setText(datePicker.headerText)
+                val formatter = SimpleDateFormat("dd/MM/yyyy")
+                date = formatter.format(datePicker.selection?.let { it1 -> Date(it1) })
+                var year = Integer.parseInt("${date.subSequence(6, 10)}")
+                var month = Integer.parseInt("${date.subSequence(3, 5)}")
+                var day = Integer.parseInt("${date.subSequence(0, 2)}")
+                timestamp = Date(year, month-1, day+1)
+                binding.birthdateEditEditText.setText(Timestamp(timestamp!!).toDate().toString())
             }
             datePicker.show(parentFragmentManager, "tag");
         }
 
         binding.savePetEditButton.setOnClickListener{
-            model.updateCurrentPet(binding.nameEditEditText.text.toString(), Timestamp(timestamp),
+            timestamp?.let { it1 -> Timestamp(it1) }?.let { it2 ->
+                model.updateCurrentPet(binding.nameEditEditText.text.toString(),
+                    it2,
                     binding.petTypeEditEditText.text.toString())
+            }
             this.findNavController().navigate(R.id.navigation_pets)
         }
 

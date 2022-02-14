@@ -64,13 +64,6 @@ class EventAdapter (val fragment: EventsFragment) : RecyclerView.Adapter<EventAd
                     }
                 )
             }
-
-//            itemView.setOnLongClickListener{
-//                model.updatePos(adapterPosition)
-//                model.toggleCurrentPhoto()
-//                model.updateCurrentPhoto(model.getCurrentPhoto().url, model.getCurrentPhoto().caption, model.getCurrentPhoto().isSelected)
-////                notifyDataSetChanged()
-//                true
         }
 
         // This method needs to be fast! It can get called many many many times over!!!
@@ -83,7 +76,7 @@ class EventAdapter (val fragment: EventsFragment) : RecyclerView.Adapter<EventAd
     }
 
     fun parseDate(time: Timestamp): String {
-        return "${time.toDate().month}/${time.toDate().date.toString()}/${time.toDate().year.toString().substring(1,3)}"
+        return "${time.toDate().month + 1}/${time.toDate().date.toString()}"
     }
 
     fun parseTime(time: Timestamp): String {

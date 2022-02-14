@@ -102,6 +102,6 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
     }
 
     fun parseDate(time: Timestamp): String {
-        return "${time.toDate().month + 1}/${time.toDate().date.toString()}/${time.toDate().year.toString().substring(1,3)}"
+        return "${time.toDate().month + 1}/${time.toDate().date.toString()}/${time.toDate().year.toString()}"
     }
 }
