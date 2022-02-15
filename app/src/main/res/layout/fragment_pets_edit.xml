@@ -43,6 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/pet_edit_image"
             android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/Golf"
+            android:textColor="@color/white"
             android:text="@string/upload_photo" />
 
         <EditText

@@ -40,6 +40,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/profile_image"
                 android:layout_centerHorizontal="true"
+                android:backgroundTint="@color/Foxtrot"
+                android:textColor="@color/white"
                 android:text="@string/upload_photo" />
 
             <ImageView
