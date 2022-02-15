@@ -105,6 +105,7 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
             petTypeTextView.text = "Pet Type: ${pet.type}"
             petBirthdateTextView.text = "Birthdate: ${parseDate(pet.birthdate)}"
             if (pet.storageUriString.isNotBlank()) {
+                Log.d(Constants.TAG, pet.storageUriString)
                 petPhotoImageView.load(pet.storageUriString) {
                     crossfade(true)
                     transformations(RoundedCornersTransformation(0F))
