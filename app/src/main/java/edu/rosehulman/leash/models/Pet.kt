@@ -6,7 +6,11 @@ import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.ServerTimestamp
 import java.util.*
 
-data class Pet (var name: String="", var birthdate: Timestamp = Timestamp.now(), var type: String =""){
+data class Pet (var name: String="",
+                var birthdate: Timestamp = Timestamp.now(),
+                var type: String ="",
+                var storageUriString: String = ""
+){
     override fun toString(): String {
         return if (name.isNotBlank()) "'$name', from $type" else ""
     }

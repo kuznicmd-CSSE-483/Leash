@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -47,6 +49,12 @@ class ProfileFragment : Fragment() {
     fun updateView() {
         binding.profileName.text = model.user?.name
         binding.accountCreationDateText.text = "Created: ${timestampToString(model.user?.created!!)}"
+        if (model.user!!.storageUriString.isNotEmpty()) {
+            binding.profileImage.load(model.user!!.storageUriString) {
+                crossfade(true)
+                transformations(RoundedCornersTransformation(0F))
+            }
+        }
     }
 
     fun timestampToString(time: Timestamp) : String{

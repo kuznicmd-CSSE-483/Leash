@@ -28,10 +28,11 @@ class UserViewModel : ViewModel() {
         }
     }
 
-    fun update(newName: String) {
+    fun update(newName: String, newStorageUriString: String) {
         if (user != null) {
             with(user!!) {
                 name = newName
+                storageUriString = newStorageUriString
                 ref.set(this)
             }
         }

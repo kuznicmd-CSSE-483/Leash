@@ -21,18 +21,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
             android:text="Pet"
             android:textAlignment="center"
             android:textColor="@color/Golf"
             android:textSize="40sp" />
 
+        <ImageView
+            android:id="@+id/pet_image"
+            android:layout_width="192dp"
+            android:layout_height="192dp"
+            android:layout_below="@id/pet_header"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_baseline_pets_24"
+            android:contentDescription="@string/pet_image_description" />
+
         <EditText
             android:id="@+id/name_editText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/pet_header"
+            android:layout_below="@id/pet_image"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/Hotel"

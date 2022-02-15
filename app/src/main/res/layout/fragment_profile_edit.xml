@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Foxtrot"
     tools:context=".ui.ProfileEditFragment">
 
     <androidx.cardview.widget.CardView
@@ -33,6 +34,14 @@
                 android:background="@color/Foxtrot"
                 android:src="@drawable/ic_baseline_person_24" />
 
+            <Button
+                android:id="@+id/profile_edit_upload_photo_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_image"
+                android:layout_centerHorizontal="true"
+                android:text="@string/upload_photo" />
+
             <ImageView
                 android:id="@+id/edit_imageView"
                 android:layout_width="30dp"
@@ -48,9 +57,8 @@
                 android:id="@+id/profile_name_editText"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/profile_image"
+                android:layout_below="@id/profile_edit_upload_photo_button"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
                 android:textAlignment="center"
                 android:inputType="text"
                 android:textColor="@color/white"

@@ -54,10 +54,11 @@ class PetsViewModel : ViewModel() {
         ref.add(newPet)
     }
 
-    fun updateCurrentPet(name: String, birthdate: Timestamp, type: String) {
+    fun updateCurrentPet(name: String, birthdate: Timestamp, type: String, storageUriString: String) {
         pets[currentPos].name = name
         pets[currentPos].birthdate = birthdate
         pets[currentPos].type = type
+        pets[currentPos].storageUriString = storageUriString
         ref.document(getCurrentPet().id).set(getCurrentPet())
     }
 

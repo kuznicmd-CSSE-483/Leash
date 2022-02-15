@@ -58,4 +58,6 @@
     <string name="events_edit_delete_button">delete</string>
     <string name="pets_edit_delete_button">delete</string>
     <string name="logout_button">LOGOUT</string>
+    <string name="pet_image_description">Pet Image</string>
+    <string name="upload_photo">Upload Photo</string>
 </resources>

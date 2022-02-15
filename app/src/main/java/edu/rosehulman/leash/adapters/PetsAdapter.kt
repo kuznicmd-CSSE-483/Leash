@@ -2,19 +2,24 @@ package edu.rosehulman.leash.adapters
 
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.core.util.rangeTo
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import edu.rosehulman.leash.Constants
 import edu.rosehulman.leash.R
 import edu.rosehulman.leash.models.Pet
 import edu.rosehulman.leash.models.PetsViewModel
@@ -68,11 +73,12 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
     inner class PetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val petNameTextView: TextView = itemView.findViewById(R.id.pet_name_textView)
         val petTypeTextView: TextView = itemView.findViewById(R.id.pet_type_textView)
-        val eventEditImageView: ImageView = itemView.findViewById(R.id.edit_imageView)
+        val petEditImageView: ImageView = itemView.findViewById(R.id.edit_imageView)
         val petBirthdateTextView: TextView = itemView.findViewById(R.id.pet_birthdate_textView)
+        val petPhotoImageView: ImageView = itemView.findViewById(R.id.pet_photo_imageView)
 
         init {
-            eventEditImageView.setOnClickListener {
+            petEditImageView.setOnClickListener {
                 model.updatePos(adapterPosition)
                 fragment.findNavController().navigate(R.id.navigation_pets_edit,
                     null,
@@ -98,6 +104,12 @@ class PetsAdapter(val fragment: PetsFragment) : RecyclerView.Adapter<PetsAdapter
             petNameTextView.text = pet.name
             petTypeTextView.text = "Pet Type: ${pet.type}"
             petBirthdateTextView.text = "Birthdate: ${parseDate(pet.birthdate)}"
+            if (pet.storageUriString.isNotBlank()) {
+                petPhotoImageView.load(pet.storageUriString) {
+                    crossfade(true)
+                    transformations(RoundedCornersTransformation(0F))
+                }
+            }
         }
     }
 
