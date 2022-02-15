@@ -68,7 +68,7 @@ class PetsEditFragment : Fragment() {
                 var year = Integer.parseInt("${date.subSequence(6, 10)}")
                 var month = Integer.parseInt("${date.subSequence(3, 5)}")
                 var day = Integer.parseInt("${date.subSequence(0, 2)}")
-                timestamp = Date(year, month-1, day+1)
+                timestamp = Date(year-1900, month-1, day+1)
                 binding.birthdateEditEditText.setText(Timestamp(timestamp!!).toDate().toString())
             }
             datePicker.show(parentFragmentManager, "tag");

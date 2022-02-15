@@ -114,7 +114,7 @@ class EventsCreateFragment : Fragment() {
                 binding.timeCreateEditText.setText(datePicker.headerText)
                 val formatter = SimpleDateFormat("dd/MM/yyyy")
                 date = formatter.format(datePicker.selection?.let { it1 -> Date(it1) })
-                var year = parseInt("${date.subSequence(6,10)}")
+                var year = parseInt("${date.subSequence(6,10)}")-1900
                 var month = parseInt("${date.subSequence(3,5)}")
                 var day = parseInt("${date.subSequence(0,2)}")
 

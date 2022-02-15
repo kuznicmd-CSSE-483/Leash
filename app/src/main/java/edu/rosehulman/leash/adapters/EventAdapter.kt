@@ -76,10 +76,10 @@ class EventAdapter (val fragment: EventsFragment) : RecyclerView.Adapter<EventAd
     }
 
     fun parseDate(time: Timestamp): String {
-        return "${time.toDate().month + 1}/${time.toDate().date.toString()}"
+        return "${time.toDate().month + 1}/${time.toDate().date+1}"
     }
 
     fun parseTime(time: Timestamp): String {
-        return "${time.toDate().hours.toString()}:${time.toDate().minutes.toString()}"
+        return String.format("%02d:%02d", time.toDate().hours, time.toDate().minutes)
     }
 }
