@@ -11,6 +11,7 @@ import androidx.lifecycle.AndroidViewModel
 import edu.rosehulman.leash.Constants
 import edu.rosehulman.leash.receivers.AlarmReceiver
 import edu.rosehulman.leash.utils.NotificationUtils
+import java.lang.Integer.parseInt
 import java.util.*
 
 class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
@@ -18,6 +19,9 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
     private val alarmManager = app.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     private val REQUEST_CODE = 1
     val SECOND_IN_MILLIS: Long = 1_000L // timers work in milliseconds
+    private var alarmYear: Int = 0
+    private var alarmMonth: Int = 0
+    private var alarmDay: Int = 0
     private var alarmHour: Int = 0
     private var alarmMinute: Int = 0
     private var currentHour: Int = 0
@@ -43,9 +47,13 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
         }
     }
 
-    fun setAlarmTime(hour: Int, minute: Int) {
-        alarmHour = hour
-        alarmMinute = minute
+    fun setAlarmTime(timestamp: Date) {
+        alarmYear = parseInt("${timestamp.toString().subSequence(24,28)}")
+        alarmMonth = timestamp.month
+        alarmDay = timestamp.day
+        alarmHour = timestamp.hours
+        alarmMinute =  timestamp.minutes
+        setAlarmScheduled()
     }
 
     fun currentTimeString() = String.format("%2d:%02d", currentHour, currentMinute)
@@ -70,7 +78,6 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
         val notifyIntent = Intent(app, AlarmReceiver::class.java).also {
             it.putExtra(NotificationUtils.MESSAGE_KEY, message)
         }
-        Log.d(Constants.TAG, "INSIDE MAKE PENDING INTENT")
         return PendingIntent.getBroadcast(
             app,
             REQUEST_CODE,
@@ -82,10 +89,14 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
     // Important for our Lease application!
     fun setAlarmScheduled() {
         val calendar = Calendar.getInstance().apply {
+            set(Calendar.YEAR, alarmYear)
+            set(Calendar.MONTH, alarmMonth)
+            set(Calendar.DAY_OF_MONTH, alarmDay)
+
             set(Calendar.HOUR_OF_DAY, alarmHour)
             set(Calendar.MINUTE, alarmMinute)
-        }
 
+        }
         alarmManager.set(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,

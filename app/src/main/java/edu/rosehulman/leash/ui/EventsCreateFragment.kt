@@ -167,12 +167,11 @@ class EventsCreateFragment : Fragment() {
             if (binding.eventTypeCreateSpinner.selectedItem.toString() == "Event") {
                 binding.recurrenceCreateSpinner.setEnabled(false)
             }
-            // TODO: Checking alert item is set to anything except none
+            // TODO: Need to set alarm based off given date and time
             if (binding.alertCreateSpinner.selectedItem.toString() != "None") {
-                // launchTimePicker()
-                // TODO: Alarm Soon for testing.
-                Log.d(Constants.TAG, "INSIDE CONDITIONAL")
-                alarmModel.setAlarmSoon()
+                // TODO: Alarm Soon for testing
+                    Log.d(Constants.TAG, "INSIDE HERE")
+                    alarmModel.setAlarmTime(timestamp)
             }
 
             model.addEvent(binding.eventTypeCreateSpinner.selectedItem.toString(), binding.nameCreateEditText.text.toString(),
@@ -183,22 +182,4 @@ class EventsCreateFragment : Fragment() {
         }
     }
 
-    // TODO: Will have to check this out::
-    private fun launchTimePicker() {
-        val futureCalendar = Calendar.getInstance().apply {
-            set(Calendar.MINUTE, get(Calendar.MINUTE) + 1)
-        }
-        val picker = MaterialTimePicker.Builder()
-            .setTimeFormat(TimeFormat.CLOCK_12H)
-            .setHour(futureCalendar.get(Calendar.HOUR_OF_DAY))
-            .setMinute(futureCalendar.get(Calendar.MINUTE))
-            .setTitleText("Select Alert time")
-            .setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
-            .build()
-        picker.addOnPositiveButtonClickListener {
-            alarmModel.setAlarmTime(picker.hour, picker.minute)
-        }
-        picker.addOnNegativeButtonClickListener { }
-        picker.show(parentFragmentManager, "tag")
-    }
 }
