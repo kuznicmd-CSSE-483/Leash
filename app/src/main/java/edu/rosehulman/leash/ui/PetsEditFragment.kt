@@ -55,7 +55,7 @@ class PetsEditFragment : Fragment() {
         }
 
     private var latestTmpUri: Uri? = null
-
+    private var uploading: Boolean = false
     private val storageImagesRef = Firebase.storage
         .reference
         .child("images")
@@ -122,11 +122,23 @@ class PetsEditFragment : Fragment() {
 
         binding.savePetEditButton.setOnClickListener{
             timestamp?.let { it1 -> Timestamp(it1) }?.let { it2 ->
-                model.updateCurrentPet(binding.nameEditEditText.text.toString(),
-                    it2,
-                    binding.petTypeEditEditText.text.toString(),
-                    storageUriStringInFragment)
+                if (uploading) {
+                    model.updateCurrentPet(
+                        binding.nameEditEditText.text.toString(),
+                        it2,
+                        binding.petTypeEditEditText.text.toString(),
+                        storageUriStringInFragment
+                    )
+                } else {
+                    model.updateCurrentPet(
+                        binding.nameEditEditText.text.toString(),
+                        it2,
+                        binding.petTypeEditEditText.text.toString(),
+                        model.getCurrentPet().storageUriString
+                    )
+                }
             }
+            uploading = false
             this.findNavController().navigate(R.id.navigation_pets)
         }
 
@@ -137,6 +149,7 @@ class PetsEditFragment : Fragment() {
         }
 
         binding.petEditUploadPhotoButton.setOnClickListener {
+            uploading = true
             showPictureDialog()
         }
     }

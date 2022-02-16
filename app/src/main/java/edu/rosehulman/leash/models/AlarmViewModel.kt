@@ -51,13 +51,14 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
             alarmMinute = it.get(Calendar.MINUTE)
         }
     }
-
+    
     fun setAlarmTime(timestamp: Date, alert: Int, message: String) {
         alarmYear = java.lang.Integer.parseInt("${timestamp.toString().subSequence(24,28)}")
         alarmMonth = java.lang.Integer.parseInt("${timestamp.month}")
         alarmDay =  java.lang.Integer.parseInt("${timestamp.date}")
         alarmHour = java.lang.Integer.parseInt("${timestamp.hours}")
         alarmMinute = java.lang.Integer.parseInt("${timestamp.minutes}")
+
 
         if (alert < 60) {
             alarmHour =  parseInt("${timestamp.hours}")
