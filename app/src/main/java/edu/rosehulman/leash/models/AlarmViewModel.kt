@@ -93,7 +93,7 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
             app,
             REQUEST_CODE,
             notifyIntent,
-            0
+            PendingIntent.FLAG_UPDATE_CURRENT
         )
     }
     fun setAlarmScheduled(message: String) {
@@ -105,7 +105,6 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
             set(Calendar.MINUTE, alarmMinute)
         }
 
-        Log.d(Constants.TAG, "Alert is being set...")
         alarmManager.set(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,

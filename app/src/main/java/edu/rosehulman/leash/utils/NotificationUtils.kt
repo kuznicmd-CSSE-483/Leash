@@ -67,7 +67,7 @@ object NotificationUtils {
         //  small icon, and high priority. Use the data passed in as part of the text.
         val builder = NotificationCompat.Builder(context, channelId)
             .setContentTitle("LEASH ALERT")
-            .setContentText("${data}")
+            .setContentText("Notification: ${data}")
             .setSmallIcon(R.drawable.ic_baseline_pets_24)
             .setContentIntent(contentPendingIntent)
             .setAutoCancel(true)

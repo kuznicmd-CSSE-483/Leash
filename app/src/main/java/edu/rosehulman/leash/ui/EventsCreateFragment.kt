@@ -166,8 +166,9 @@ class EventsCreateFragment : Fragment() {
         binding.saveEventCreateButton.setOnClickListener {
             if (binding.eventTypeCreateSpinner.selectedItem.toString() == "Event") {
                 binding.recurrenceCreateSpinner.setEnabled(false)
+                binding.recurrenceCreateSpinner.setSelection(0)
             }
-            // TODO: Need to set alarm based off given date and time
+            // TODO: CREATING ALERTS & REOCCURRENCES (EVENT AND/OR REMINDER)
             if (binding.alertCreateSpinner.selectedItem.toString() != "None") {
                     if (binding.alertCreateSpinner.selectedItem.toString() == "Time of event") {
                         alarmModel.setAlarmTime(timestamp, 0, binding.nameCreateEditText.text.toString())
@@ -196,5 +197,4 @@ class EventsCreateFragment : Fragment() {
             this.findNavController().navigate(R.id.navigation_events)
         }
     }
-
 }
