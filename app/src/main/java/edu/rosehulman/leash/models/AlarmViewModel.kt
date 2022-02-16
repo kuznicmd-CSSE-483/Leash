@@ -53,7 +53,6 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
         alarmDay = timestamp.day
         alarmHour = timestamp.hours
         alarmMinute =  timestamp.minutes
-        setAlarmScheduled()
     }
 
     fun currentTimeString() = String.format("%2d:%02d", currentHour, currentMinute)

@@ -170,8 +170,12 @@ class EventsCreateFragment : Fragment() {
             // TODO: Need to set alarm based off given date and time
             if (binding.alertCreateSpinner.selectedItem.toString() != "None") {
                 // TODO: Alarm Soon for testing
-                    Log.d(Constants.TAG, "INSIDE HERE")
+                Log.d(Constants.TAG, "INSIDE HERE")
+                Log.d(Constants.TAG, timestamp.toString())
                     alarmModel.setAlarmTime(timestamp)
+                Log.d(Constants.TAG, alarmModel.alarmTimeString())
+                Log.d(Constants.TAG, alarmModel.currentTimeString())
+                alarmModel.setAlarmScheduled()
             }
 
             model.addEvent(binding.eventTypeCreateSpinner.selectedItem.toString(), binding.nameCreateEditText.text.toString(),
