@@ -66,8 +66,8 @@ object NotificationUtils {
         // TODO 2 Create a basic notification with at least title, text,
         //  small icon, and high priority. Use the data passed in as part of the text.
         val builder = NotificationCompat.Builder(context, channelId)
-            .setContentTitle("WAKEY WAKEY!")
-            .setContentText("Your ${data} alarm is going off!!!")
+            .setContentTitle("LEASH ALERT")
+            .setContentText("${data}")
             .setSmallIcon(R.drawable.ic_baseline_pets_24)
             .setContentIntent(contentPendingIntent)
             .setAutoCancel(true)

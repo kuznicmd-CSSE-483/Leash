@@ -39,20 +39,17 @@
     </string-array>
     <string-array name="alert_array">
         <item>None</item>
+        <item>Time of event</item>
         <item>5 mins before</item>
         <item>15 mins before</item>
         <item>30 mins before</item>
-        <item>1 hours before</item>
+        <item>1 hour before</item>
         <item>2 hours before</item>
-        <item>3 hours before</item>
-        <item>5 hours before</item>
     </string-array>
     <string-array name="recurrence_array">
         <item>None</item>
         <item>Daily</item>
         <item>Weekly</item>
-        <item>Bi-Weekly</item>
-        <item>Tri-Weekly</item>
         <item>Monthly</item>
         <item>Annually</item>
     </string-array>

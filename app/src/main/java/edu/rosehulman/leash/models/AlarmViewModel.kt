@@ -24,6 +24,9 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
     private var alarmDay: Int = 0
     private var alarmHour: Int = 0
     private var alarmMinute: Int = 0
+    private var currentYear: Int = 0
+    private var currentMonth: Int = 0
+    private var currentDay: Int = 0
     private var currentHour: Int = 0
     private var currentMinute: Int = 0
 
@@ -36,42 +39,50 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
 
     fun setCurrentTime() {
         Calendar.getInstance().also {
+            currentYear = it.get(Calendar.YEAR)
+            currentMonth = it.get(Calendar.MONTH)
+            currentDay = it.get(Calendar.DATE)
             currentHour = it.get(Calendar.HOUR_OF_DAY)
             currentMinute = it.get(Calendar.MINUTE)
         }
-
         Calendar.getInstance().also {
-            it.set(Calendar.MINUTE, it.get(Calendar.MINUTE) + 1)
+            it.set(Calendar.MINUTE, it.get(Calendar.MINUTE))
             alarmHour = it.get(Calendar.HOUR_OF_DAY)
             alarmMinute = it.get(Calendar.MINUTE)
         }
     }
 
-    fun setAlarmTime(timestamp: Date) {
-        alarmYear = parseInt("${timestamp.toString().subSequence(24,28)}")
-        alarmMonth = timestamp.month
-        alarmDay = timestamp.day
-        alarmHour = timestamp.hours
-        alarmMinute =  timestamp.minutes
-        setAlarmScheduled()
+    fun setAlarmTime(timestamp: Date, alert: Int, message: String) {
+        alarmYear = java.lang.Integer.parseInt("${timestamp.toString().subSequence(24,28)}")
+        alarmMonth = java.lang.Integer.parseInt("${timestamp.month}")
+        alarmDay =  java.lang.Integer.parseInt("${timestamp.date}")
+        alarmHour = java.lang.Integer.parseInt("${timestamp.hours}")
+        alarmMinute = java.lang.Integer.parseInt("${timestamp.minutes}")
+
+        if (alert < 60) {
+            alarmHour =  parseInt("${timestamp.hours}")
+            alarmMinute =   parseInt("${timestamp.minutes}") - alert
+        }
+        else if (alert == 60) {
+            alarmHour = java.lang.Integer.parseInt("${timestamp.hours}") - 1
+            alarmMinute = java.lang.Integer.parseInt("${timestamp.minutes}")
+        }
+        else if (alert == 120) {
+            alarmHour = java.lang.Integer.parseInt("${timestamp.hours}") - 2
+            alarmMinute = java.lang.Integer.parseInt("${timestamp.minutes}")
+        }
+
+        currentTimeString()
+        alarmTimeString()
+
+        setAlarmScheduled(message)
     }
 
-    fun currentTimeString() = String.format("%2d:%02d", currentHour, currentMinute)
-    fun alarmTimeString() = String.format("%2d:%02d", alarmHour, alarmMinute)
+    fun currentTimeString() = Log.d(
+        Constants.TAG, "CURRENT: ${currentYear}, ${currentMonth}, ${currentDay}, ${currentHour}, ${currentMinute}")
 
-    fun setAlarmSoon() {
-        // TODO: We coded this in class!
-        // you should uncomment and call makePendingIntent too.
-        val selectedInterval = 5 * SECOND_IN_MILLIS
-        // System clock keeps track of how long sinc we booted!
-        val triggerTime = SystemClock.elapsedRealtime() + selectedInterval
-        Log.d(Constants.TAG, "Setting alarm for $triggerTime")
-        alarmManager.set(
-            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            triggerTime,
-            makePendingIntent(AlarmType.SOON.toString().lowercase())
-        )
-    }
+    fun alarmTimeString() =
+        Log.d(Constants.TAG, "ALARM: ${alarmYear}, ${alarmMonth}, ${alarmDay}, ${alarmHour}, ${alarmMinute}")
 
     // Alarm Receiver is our Broadcast Receiver
     private fun makePendingIntent(message: String): PendingIntent {
@@ -82,25 +93,23 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
             app,
             REQUEST_CODE,
             notifyIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            0
         )
     }
-
-    // Important for our Lease application!
-    fun setAlarmScheduled() {
+    fun setAlarmScheduled(message: String) {
         val calendar = Calendar.getInstance().apply {
             set(Calendar.YEAR, alarmYear)
             set(Calendar.MONTH, alarmMonth)
-            set(Calendar.DAY_OF_MONTH, alarmDay)
-
+            set(Calendar.DATE, alarmDay)
             set(Calendar.HOUR_OF_DAY, alarmHour)
             set(Calendar.MINUTE, alarmMinute)
-
         }
+
+        Log.d(Constants.TAG, "Alert is being set...")
         alarmManager.set(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
-            makePendingIntent(AlarmType.SCHEDULED.toString().lowercase())
+            makePendingIntent(message)
         )
     }
 
@@ -108,9 +117,12 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
         // This is beyond this lesson. You can try it out if your app requires it.
     }
 
+    fun cancelAlarm() {
+
+    }
+
     fun cancelAllAlarms() {
         // TODO Uncomment so you can cancel alarms:
         //        alarmManager.cancel(makePendingIntent(AlarmType.RECURRING.toString().lowercase()))
     }
-
 }

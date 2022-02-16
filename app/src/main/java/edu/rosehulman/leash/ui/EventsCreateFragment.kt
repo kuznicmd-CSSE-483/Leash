@@ -169,9 +169,24 @@ class EventsCreateFragment : Fragment() {
             }
             // TODO: Need to set alarm based off given date and time
             if (binding.alertCreateSpinner.selectedItem.toString() != "None") {
-                // TODO: Alarm Soon for testing
-                    Log.d(Constants.TAG, "INSIDE HERE")
-                    alarmModel.setAlarmTime(timestamp)
+                    if (binding.alertCreateSpinner.selectedItem.toString() == "Time of event") {
+                        alarmModel.setAlarmTime(timestamp, 0, binding.nameCreateEditText.text.toString())
+                    }
+                    else if (binding.alertCreateSpinner.selectedItem.toString() == "5 mins before") {
+                        alarmModel.setAlarmTime(timestamp, 5, binding.nameCreateEditText.text.toString())
+                    }
+                    else if (binding.alertCreateSpinner.selectedItem.toString() == "15 mins before") {
+                        alarmModel.setAlarmTime(timestamp, 15, binding.nameCreateEditText.text.toString())
+                    }
+                    else if (binding.alertCreateSpinner.selectedItem.toString() == "30 mins before") {
+                        alarmModel.setAlarmTime(timestamp, 30, binding.nameCreateEditText.text.toString())
+                    }
+                    else if (binding.alertCreateSpinner.selectedItem.toString() == "1 hour before") {
+                        alarmModel.setAlarmTime(timestamp, 60, binding.nameCreateEditText.text.toString())
+                    }
+                    else if (binding.alertCreateSpinner.selectedItem.toString() == "2 hours before") {
+                        alarmModel.setAlarmTime(timestamp, 120, binding.nameCreateEditText.text.toString())
+                    }
             }
 
             model.addEvent(binding.eventTypeCreateSpinner.selectedItem.toString(), binding.nameCreateEditText.text.toString(),
