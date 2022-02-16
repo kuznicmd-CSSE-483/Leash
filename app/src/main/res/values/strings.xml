@@ -38,8 +38,14 @@
         <item>Event</item>
     </string-array>
     <string-array name="alert_array">
-        <item>Yes</item>
-        <item>No</item>
+        <item>None</item>
+        <item>5 mins before</item>
+        <item>15 mins before</item>
+        <item>30 mins before</item>
+        <item>1 hours before</item>
+        <item>2 hours before</item>
+        <item>3 hours before</item>
+        <item>5 hours before</item>
     </string-array>
     <string-array name="recurrence_array">
         <item>None</item>

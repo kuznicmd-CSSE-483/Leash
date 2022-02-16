@@ -1,5 +1,6 @@
 package edu.rosehulman.leash.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -21,7 +21,9 @@ import com.google.firebase.Timestamp
 import edu.rosehulman.leash.Constants
 import edu.rosehulman.leash.R
 import edu.rosehulman.leash.databinding.FragmentEventsCreateBinding
+import edu.rosehulman.leash.models.AlarmViewModel
 import edu.rosehulman.leash.models.EventsViewModel
+import edu.rosehulman.leash.utils.NotificationUtils
 import java.lang.Integer.parseInt
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,7 +35,11 @@ class EventsCreateFragment : Fragment() {
     private lateinit var binding: FragmentEventsCreateBinding
     private lateinit var date: String
     private lateinit var timestamp: Date
+    // Create Alarm information
+    private lateinit var alarmModel: AlarmViewModel
+    private lateinit var calendar: Calendar
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,6 +47,9 @@ class EventsCreateFragment : Fragment() {
     ): View {
         model = ViewModelProvider(requireActivity()).get(EventsViewModel::class.java)
         binding = FragmentEventsCreateBinding.inflate(inflater, container, false)
+        alarmModel = ViewModelProvider(requireActivity())[AlarmViewModel::class.java]
+        alarmModel.setCurrentTime()
+        NotificationUtils.createChannel(requireContext())
 
         timestamp = Timestamp.now().toDate()
 
@@ -131,7 +140,6 @@ class EventsCreateFragment : Fragment() {
             }
             datePicker.show(parentFragmentManager, "tag")
         }
-
         // The following click listeners are meant to disable the reoccurrence spinner
         // if the event type is "Event", as this will not reoccur.
         binding.nameCreateEditText.setOnClickListener {
@@ -154,11 +162,18 @@ class EventsCreateFragment : Fragment() {
             }
         }
 
-        // Logic for saving event
+        // Logic for saving event // If they select yes for an alert, do that here;
         binding.saveEventCreateButton.setOnClickListener {
             if (binding.eventTypeCreateSpinner.selectedItem.toString() == "Event") {
                 binding.recurrenceCreateSpinner.setEnabled(false)
             }
+            // TODO: Need to set alarm based off given date and time
+            if (binding.alertCreateSpinner.selectedItem.toString() != "None") {
+                // TODO: Alarm Soon for testing
+                    Log.d(Constants.TAG, "INSIDE HERE")
+                    alarmModel.setAlarmTime(timestamp)
+            }
+
             model.addEvent(binding.eventTypeCreateSpinner.selectedItem.toString(), binding.nameCreateEditText.text.toString(),
                 Timestamp(timestamp), binding.alertCreateSpinner.selectedItem.toString(), binding.recurrenceCreateSpinner.selectedItem.toString(),
                 binding.petCreateEditText.text.toString()
