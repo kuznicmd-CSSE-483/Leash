@@ -166,16 +166,28 @@ class EventsCreateFragment : Fragment() {
         binding.saveEventCreateButton.setOnClickListener {
             if (binding.eventTypeCreateSpinner.selectedItem.toString() == "Event") {
                 binding.recurrenceCreateSpinner.setEnabled(false)
+                binding.recurrenceCreateSpinner.setSelection(0)
             }
-            // TODO: Need to set alarm based off given date and time
+            // TODO: CREATING ALERTS & REOCCURRENCES (EVENT AND/OR REMINDER)
             if (binding.alertCreateSpinner.selectedItem.toString() != "None") {
-                // TODO: Alarm Soon for testing
-                Log.d(Constants.TAG, "INSIDE HERE")
-                Log.d(Constants.TAG, timestamp.toString())
-                    alarmModel.setAlarmTime(timestamp)
-                Log.d(Constants.TAG, alarmModel.alarmTimeString())
-                Log.d(Constants.TAG, alarmModel.currentTimeString())
-                alarmModel.setAlarmScheduled()
+                    if (binding.alertCreateSpinner.selectedItem.toString() == "Time of event") {
+                        alarmModel.setAlarmTime(timestamp, 0, binding.nameCreateEditText.text.toString())
+                    }
+                    else if (binding.alertCreateSpinner.selectedItem.toString() == "5 mins before") {
+                        alarmModel.setAlarmTime(timestamp, 5, binding.nameCreateEditText.text.toString())
+                    }
+                    else if (binding.alertCreateSpinner.selectedItem.toString() == "15 mins before") {
+                        alarmModel.setAlarmTime(timestamp, 15, binding.nameCreateEditText.text.toString())
+                    }
+                    else if (binding.alertCreateSpinner.selectedItem.toString() == "30 mins before") {
+                        alarmModel.setAlarmTime(timestamp, 30, binding.nameCreateEditText.text.toString())
+                    }
+                    else if (binding.alertCreateSpinner.selectedItem.toString() == "1 hour before") {
+                        alarmModel.setAlarmTime(timestamp, 60, binding.nameCreateEditText.text.toString())
+                    }
+                    else if (binding.alertCreateSpinner.selectedItem.toString() == "2 hours before") {
+                        alarmModel.setAlarmTime(timestamp, 120, binding.nameCreateEditText.text.toString())
+                    }
             }
 
             model.addEvent(binding.eventTypeCreateSpinner.selectedItem.toString(), binding.nameCreateEditText.text.toString(),
@@ -185,5 +197,4 @@ class EventsCreateFragment : Fragment() {
             this.findNavController().navigate(R.id.navigation_events)
         }
     }
-
 }
