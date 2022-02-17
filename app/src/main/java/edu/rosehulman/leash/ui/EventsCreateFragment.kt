@@ -35,6 +35,7 @@ class EventsCreateFragment : Fragment() {
     private lateinit var binding: FragmentEventsCreateBinding
     private lateinit var date: String
     private lateinit var timestamp: Date
+
     // Create Alarm information
     private lateinit var alarmModel: AlarmViewModel
     private lateinit var calendar: Calendar
@@ -104,8 +105,7 @@ class EventsCreateFragment : Fragment() {
             if (binding.eventTypeCreateSpinner.selectedItem.toString() == "Event") {
                 binding.recurrenceCreateSpinner.setEnabled(false)
                 binding.recurrenceCreateSpinner.setSelection(0)
-            }
-            else {
+            } else {
                 binding.recurrenceCreateSpinner.setEnabled(true)
             }
             val constraintsBuilder =
@@ -123,17 +123,17 @@ class EventsCreateFragment : Fragment() {
                 binding.timeCreateEditText.setText(datePicker.headerText)
                 val formatter = SimpleDateFormat("dd/MM/yyyy")
                 date = formatter.format(datePicker.selection?.let { it1 -> Date(it1) })
-                var year = parseInt("${date.subSequence(6,10)}")-1900
-                var month = parseInt("${date.subSequence(3,5)}")
-                var day = parseInt("${date.subSequence(0,2)}")
+                var year = parseInt("${date.subSequence(6, 10)}") - 1900
+                var month = parseInt("${date.subSequence(3, 5)}")
+                var day = parseInt("${date.subSequence(0, 2)}")
 
                 val picker =
                     MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_24H)
                         .setTitleText("Select Event time")
                         .build()
-                picker.addOnPositiveButtonClickListener{
-                    timestamp = Date(year, month-1, day+1, picker.hour, picker.minute)
+                picker.addOnPositiveButtonClickListener {
+                    timestamp = Date(year, month - 1, day + 1, picker.hour, picker.minute)
                     binding.timeCreateEditText.setText(Timestamp(timestamp).toDate().toString())
                 }
                 picker.show(parentFragmentManager, "tag")
@@ -146,8 +146,7 @@ class EventsCreateFragment : Fragment() {
             if (binding.eventTypeCreateSpinner.selectedItem.toString() == "Event") {
                 binding.recurrenceCreateSpinner.setEnabled(false)
                 binding.recurrenceCreateSpinner.setSelection(0)
-            }
-            else {
+            } else {
                 binding.recurrenceCreateSpinner.setEnabled(true)
             }
         }
@@ -156,8 +155,7 @@ class EventsCreateFragment : Fragment() {
             if (binding.eventTypeCreateSpinner.selectedItem.toString() == "Event") {
                 binding.recurrenceCreateSpinner.setEnabled(false)
                 binding.recurrenceCreateSpinner.setSelection(0)
-            }
-            else {
+            } else {
                 binding.recurrenceCreateSpinner.setEnabled(true)
             }
         }
@@ -170,28 +168,77 @@ class EventsCreateFragment : Fragment() {
             }
             // TODO: CREATING ALERTS & REOCCURRENCES (EVENT AND/OR REMINDER)
             if (binding.alertCreateSpinner.selectedItem.toString() != "None") {
-                    if (binding.alertCreateSpinner.selectedItem.toString() == "Time of event") {
-                        alarmModel.setAlarmTime(timestamp, 0, binding.nameCreateEditText.text.toString())
+                if (binding.alertCreateSpinner.selectedItem.toString() == "Time of event") {
+                    alarmModel.setAlarmTime(
+                        timestamp,
+                        0,
+                        binding.nameCreateEditText.text.toString()
+                    )
+                } else if (binding.alertCreateSpinner.selectedItem.toString() == "5 mins before") {
+                    alarmModel.setAlarmTime(
+                        timestamp,
+                        5,
+                        binding.nameCreateEditText.text.toString()
+                    )
+                } else if (binding.alertCreateSpinner.selectedItem.toString() == "15 mins before") {
+                    alarmModel.setAlarmTime(
+                        timestamp,
+                        15,
+                        binding.nameCreateEditText.text.toString()
+                    )
+                } else if (binding.alertCreateSpinner.selectedItem.toString() == "30 mins before") {
+                    alarmModel.setAlarmTime(
+                        timestamp,
+                        30,
+                        binding.nameCreateEditText.text.toString()
+                    )
+                } else if (binding.alertCreateSpinner.selectedItem.toString() == "1 hour before") {
+                    alarmModel.setAlarmTime(
+                        timestamp,
+                        60,
+                        binding.nameCreateEditText.text.toString()
+                    )
+                } else if (binding.alertCreateSpinner.selectedItem.toString() == "2 hours before") {
+                    alarmModel.setAlarmTime(
+                        timestamp,
+                        120,
+                        binding.nameCreateEditText.text.toString()
+                    )
+                }
+
+                if (binding.recurrenceCreateSpinner.selectedItem.toString() == "None") {
+                    alarmModel.setAlarmScheduled(binding.nameCreateEditText.text.toString())
+                } else {
+                    if (binding.recurrenceCreateSpinner.selectedItem.toString() == "Daily") {
+                        alarmModel.setAlarmRecurring(
+                            86400000,
+                            binding.nameCreateEditText.text.toString()
+                        )
+                    } else if (binding.recurrenceCreateSpinner.selectedItem.toString() == "Weekly") {
+                        alarmModel.setAlarmRecurring(
+                            604800000,
+                            binding.nameCreateEditText.text.toString()
+                        )
+                    } else if (binding.recurrenceCreateSpinner.selectedItem.toString() == "Monthly") {
+                        alarmModel.setAlarmRecurring(
+                            2629746000,
+                            binding.nameCreateEditText.text.toString()
+                        )
+                    } else if (binding.recurrenceCreateSpinner.selectedItem.toString() == "Annually") {
+                        alarmModel.setAlarmRecurring(
+                            31556952000,
+                            binding.nameCreateEditText.text.toString()
+                        )
                     }
-                    else if (binding.alertCreateSpinner.selectedItem.toString() == "5 mins before") {
-                        alarmModel.setAlarmTime(timestamp, 5, binding.nameCreateEditText.text.toString())
-                    }
-                    else if (binding.alertCreateSpinner.selectedItem.toString() == "15 mins before") {
-                        alarmModel.setAlarmTime(timestamp, 15, binding.nameCreateEditText.text.toString())
-                    }
-                    else if (binding.alertCreateSpinner.selectedItem.toString() == "30 mins before") {
-                        alarmModel.setAlarmTime(timestamp, 30, binding.nameCreateEditText.text.toString())
-                    }
-                    else if (binding.alertCreateSpinner.selectedItem.toString() == "1 hour before") {
-                        alarmModel.setAlarmTime(timestamp, 60, binding.nameCreateEditText.text.toString())
-                    }
-                    else if (binding.alertCreateSpinner.selectedItem.toString() == "2 hours before") {
-                        alarmModel.setAlarmTime(timestamp, 120, binding.nameCreateEditText.text.toString())
-                    }
+                }
             }
 
-            model.addEvent(binding.eventTypeCreateSpinner.selectedItem.toString(), binding.nameCreateEditText.text.toString(),
-                Timestamp(timestamp), binding.alertCreateSpinner.selectedItem.toString(), binding.recurrenceCreateSpinner.selectedItem.toString(),
+            model.addEvent(
+                binding.eventTypeCreateSpinner.selectedItem.toString(),
+                binding.nameCreateEditText.text.toString(),
+                Timestamp(timestamp),
+                binding.alertCreateSpinner.selectedItem.toString(),
+                binding.recurrenceCreateSpinner.selectedItem.toString(),
                 binding.petCreateEditText.text.toString()
             )
             this.findNavController().navigate(R.id.navigation_events)
