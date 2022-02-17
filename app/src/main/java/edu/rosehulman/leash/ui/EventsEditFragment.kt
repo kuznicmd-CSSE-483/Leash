@@ -14,6 +14,7 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.Timestamp
@@ -182,11 +183,15 @@ class EventsEditFragment : Fragment() {
             this.findNavController().navigate(R.id.navigation_events)
         }
 
-    // TODO: Add modal/dialog to confirm deletion
         binding.deleteEventButton.setOnClickListener {
-            model.removeCurrentEvent()
-            this.findNavController().navigate(R.id.navigation_events)
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Are you sure?")
+                .setMessage("Are you sure you want to delete this event?")
+                .setPositiveButton(android.R.string.ok) {dialog, which ->
+                    model.removeCurrentEvent()
+                    this.findNavController().navigate(R.id.navigation_events)
+                }.setNegativeButton(android.R.string.cancel, null)
+                .show()
         }
     }
-
 }

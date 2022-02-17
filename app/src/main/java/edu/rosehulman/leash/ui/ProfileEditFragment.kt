@@ -159,7 +159,6 @@ class ProfileEditFragment : Fragment() {
             return
         }
 
-        // TODO: Add to storage
         val imageId = abs(Random.nextLong()).toString()
 
         storageImagesRef.child(imageId).putStream(stream)
