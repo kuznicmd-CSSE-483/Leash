@@ -19,6 +19,7 @@ import coil.transform.RoundedCornersTransformation
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.Timestamp
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -142,10 +143,15 @@ class PetsEditFragment : Fragment() {
             this.findNavController().navigate(R.id.navigation_pets)
         }
 
-        // TODO: Add modal/dialog to confirm deletion
         binding.deletePetEditButton.setOnClickListener {
-            model.removeCurrentPet()
-            this.findNavController().navigate(R.id.navigation_pets)
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Are you sure?")
+                .setMessage("Are you sure you want to remove this pet?")
+                .setPositiveButton(android.R.string.ok) {dialog, which ->
+                model.removeCurrentPet()
+                this.findNavController().navigate(R.id.navigation_pets)
+                }.setNegativeButton(android.R.string.cancel, null)
+                .show()
         }
 
         binding.petEditUploadPhotoButton.setOnClickListener {
@@ -210,7 +216,6 @@ class PetsEditFragment : Fragment() {
             return
         }
 
-        // TODO: Add to storage
         val imageId = abs(Random.nextLong()).toString()
 
         storageImagesRef.child(imageId).putStream(stream)
