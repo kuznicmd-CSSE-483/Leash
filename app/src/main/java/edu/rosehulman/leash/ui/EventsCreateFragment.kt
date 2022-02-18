@@ -2,7 +2,6 @@ package edu.rosehulman.leash.ui
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.Timestamp
-import edu.rosehulman.leash.Constants
 import edu.rosehulman.leash.R
 import edu.rosehulman.leash.databinding.FragmentEventsCreateBinding
 import edu.rosehulman.leash.models.AlarmViewModel
@@ -27,7 +25,8 @@ import edu.rosehulman.leash.utils.NotificationUtils
 import java.lang.Integer.parseInt
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.time.Duration.Companion.milliseconds
+import kotlin.random.Random
+
 
 class EventsCreateFragment : Fragment() {
 
@@ -35,10 +34,14 @@ class EventsCreateFragment : Fragment() {
     private lateinit var binding: FragmentEventsCreateBinding
     private lateinit var date: String
     private lateinit var timestamp: Date
+    var code = getRandom()
 
     // Create Alarm information
     private lateinit var alarmModel: AlarmViewModel
     private lateinit var calendar: Calendar
+
+    // Random Number needed
+    fun getRandom() = Random.nextInt(1000)
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -171,63 +174,61 @@ class EventsCreateFragment : Fragment() {
                 if (binding.alertCreateSpinner.selectedItem.toString() == "Time of event") {
                     alarmModel.setAlarmTime(
                         timestamp,
-                        0,
-                        binding.nameCreateEditText.text.toString()
+                        0
                     )
                 } else if (binding.alertCreateSpinner.selectedItem.toString() == "5 mins before") {
                     alarmModel.setAlarmTime(
                         timestamp,
-                        5,
-                        binding.nameCreateEditText.text.toString()
+                        5
                     )
                 } else if (binding.alertCreateSpinner.selectedItem.toString() == "15 mins before") {
                     alarmModel.setAlarmTime(
                         timestamp,
-                        15,
-                        binding.nameCreateEditText.text.toString()
+                        15
                     )
                 } else if (binding.alertCreateSpinner.selectedItem.toString() == "30 mins before") {
                     alarmModel.setAlarmTime(
                         timestamp,
-                        30,
-                        binding.nameCreateEditText.text.toString()
+                        30
                     )
                 } else if (binding.alertCreateSpinner.selectedItem.toString() == "1 hour before") {
                     alarmModel.setAlarmTime(
                         timestamp,
-                        60,
-                        binding.nameCreateEditText.text.toString()
+                        60
                     )
                 } else if (binding.alertCreateSpinner.selectedItem.toString() == "2 hours before") {
                     alarmModel.setAlarmTime(
                         timestamp,
-                        120,
-                        binding.nameCreateEditText.text.toString()
+                        120
                     )
                 }
 
                 if (binding.recurrenceCreateSpinner.selectedItem.toString() == "None") {
-                    alarmModel.setAlarmScheduled(binding.nameCreateEditText.text.toString())
+                    alarmModel.setAlarmScheduled(binding.nameCreateEditText.text.toString(), code)
                 } else {
                     if (binding.recurrenceCreateSpinner.selectedItem.toString() == "Daily") {
                         alarmModel.setAlarmRecurring(
                             86400000,
-                            binding.nameCreateEditText.text.toString()
+                            binding.nameCreateEditText.text.toString(),
+                            code
                         )
                     } else if (binding.recurrenceCreateSpinner.selectedItem.toString() == "Weekly") {
                         alarmModel.setAlarmRecurring(
                             604800000,
-                            binding.nameCreateEditText.text.toString()
+                            binding.nameCreateEditText.text.toString(),
+                            code
                         )
                     } else if (binding.recurrenceCreateSpinner.selectedItem.toString() == "Monthly") {
                         alarmModel.setAlarmRecurring(
                             2629746000,
-                            binding.nameCreateEditText.text.toString()
+                            binding.nameCreateEditText.text.toString(),
+                            code
                         )
                     } else if (binding.recurrenceCreateSpinner.selectedItem.toString() == "Annually") {
                         alarmModel.setAlarmRecurring(
                             31556952000,
-                            binding.nameCreateEditText.text.toString()
+                            binding.nameCreateEditText.text.toString(),
+                            code
                         )
                     }
                 }
@@ -239,7 +240,8 @@ class EventsCreateFragment : Fragment() {
                 Timestamp(timestamp),
                 binding.alertCreateSpinner.selectedItem.toString(),
                 binding.recurrenceCreateSpinner.selectedItem.toString(),
-                binding.petCreateEditText.text.toString()
+                binding.petCreateEditText.text.toString(),
+                getRandom()
             )
             this.findNavController().navigate(R.id.navigation_events)
         }

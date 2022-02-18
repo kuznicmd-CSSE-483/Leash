@@ -5,7 +5,6 @@ import android.app.Application
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.os.SystemClock
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import edu.rosehulman.leash.Constants
@@ -46,13 +45,13 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
             currentMinute = it.get(Calendar.MINUTE)
         }
         Calendar.getInstance().also {
-            it.set(Calendar.MINUTE, it.get(Calendar.MINUTE))
+            it.set(Calendar.MINUTE, it.get(Calendar.MINUTE) + 1)
             alarmHour = it.get(Calendar.HOUR_OF_DAY)
             alarmMinute = it.get(Calendar.MINUTE)
         }
     }
 
-    fun setAlarmTime(timestamp: Date, alert: Int, message: String) {
+    fun setAlarmTime(timestamp: Date, alert: Int) {
         alarmYear = java.lang.Integer.parseInt("${timestamp.toString().subSequence(24, 28)}")
         alarmMonth = java.lang.Integer.parseInt("${timestamp.month}")
         alarmDay = java.lang.Integer.parseInt("${timestamp.date}")
@@ -87,19 +86,20 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
         )
 
     // Alarm Receiver is our Broadcast Receiver
-    private fun makePendingIntent(message: String): PendingIntent {
+    private fun makePendingIntent(message: String, code: Int): PendingIntent {
         val notifyIntent = Intent(app, AlarmReceiver::class.java).also {
             it.putExtra(NotificationUtils.MESSAGE_KEY, message)
         }
+        Log.d(Constants.TAG, "Request Code: $code")
         return PendingIntent.getBroadcast(
             app,
-            REQUEST_CODE,
+            code,
             notifyIntent,
             PendingIntent.FLAG_UPDATE_CURRENT
         )
     }
 
-    fun setAlarmScheduled(message: String) {
+    fun setAlarmScheduled(message: String, code: Int) {
         val calendar = Calendar.getInstance().apply {
             set(Calendar.YEAR, alarmYear)
             set(Calendar.MONTH, alarmMonth)
@@ -111,11 +111,11 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
         alarmManager.set(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
-            makePendingIntent(message)
+            makePendingIntent(message, code)
         )
     }
 
-    fun setAlarmRecurring(interval: Long, message: String) {
+    fun setAlarmRecurring(interval: Long, message: String, code: Int) {
         // This is beyond this lesson. You can try it out if your app requires it.
         val calendar = Calendar.getInstance().apply {
             set(Calendar.YEAR, alarmYear)
@@ -129,7 +129,7 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
             interval,
-            makePendingIntent(message)
+            makePendingIntent(message, code)
         )
     }
 
