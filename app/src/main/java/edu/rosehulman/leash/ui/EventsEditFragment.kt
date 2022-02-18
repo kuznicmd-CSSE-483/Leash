@@ -264,6 +264,7 @@ class EventsEditFragment : Fragment() {
                 .setTitle("Are you sure?")
                 .setMessage("Are you sure you want to delete this event?")
                 .setPositiveButton(android.R.string.ok) {dialog, which ->
+                    alarmModel.cancelAlarm(model.getCurrentEvent().name, model.getCurrentEvent().code)
                     model.removeCurrentEvent()
                     this.findNavController().navigate(R.id.navigation_events)
                 }.setNegativeButton(android.R.string.cancel, null)

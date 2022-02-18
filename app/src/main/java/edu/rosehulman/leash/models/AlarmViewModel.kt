@@ -133,8 +133,8 @@ class AlarmViewModel(private val app: Application) : AndroidViewModel(app) {
         )
     }
 
-    fun cancelAlarm() {
-
+    fun cancelAlarm(message: String, code: Int) {
+        alarmManager.cancel(this.makePendingIntent(message, code))
     }
 
     fun cancelAllAlarms() {
