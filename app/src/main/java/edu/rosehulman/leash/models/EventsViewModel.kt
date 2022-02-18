@@ -45,8 +45,16 @@ class EventsViewModel  : ViewModel() {
         subscriptions.remove(fragmentName)
     }
 
-    fun addEvent(reminder: String, name: String, time: Timestamp, alert: String, recurrence: String, pet: String) {
-        val newEvent = Event(reminder, name, time, alert, recurrence, pet)
+    fun addEvent(
+        reminder: String,
+        name: String,
+        time: Timestamp,
+        alert: String,
+        recurrence: String,
+        pet: String,
+        code: Int
+    ) {
+        val newEvent = Event(reminder, name, time, alert, recurrence, pet, code)
         ref.add(newEvent)
     }
 
