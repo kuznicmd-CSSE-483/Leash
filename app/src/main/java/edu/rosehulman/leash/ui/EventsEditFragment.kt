@@ -1,5 +1,6 @@
 package edu.rosehulman.leash.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -21,7 +23,9 @@ import com.google.firebase.Timestamp
 import edu.rosehulman.leash.Constants
 import edu.rosehulman.leash.R
 import edu.rosehulman.leash.databinding.FragmentEventsEditBinding
+import edu.rosehulman.leash.models.AlarmViewModel
 import edu.rosehulman.leash.models.EventsViewModel
+import edu.rosehulman.leash.utils.NotificationUtils
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,6 +36,10 @@ class EventsEditFragment : Fragment() {
     private lateinit var date: String
     private lateinit var timestamp: Date
 
+    // Create Alarm information
+    private lateinit var alarmModel: AlarmViewModel
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,6 +47,9 @@ class EventsEditFragment : Fragment() {
     ): View? {
         binding = FragmentEventsEditBinding.inflate(inflater, container, false)
         model = ViewModelProvider(requireActivity()).get(EventsViewModel::class.java)
+        alarmModel = ViewModelProvider(requireActivity())[AlarmViewModel::class.java]
+        alarmModel.setCurrentTime()
+        NotificationUtils.createChannel(requireContext())
 
         timestamp = model.getCurrentEvent().time.toDate()
 
@@ -175,6 +186,71 @@ class EventsEditFragment : Fragment() {
         binding.saveEventButton.setOnClickListener{
             if (binding.eventTypeSpinner.selectedItem.toString() == "Event") {
                 binding.recurrenceSpinner.setEnabled(false)
+            }
+            // TODO: CREATING ALERTS & REOCCURRENCES (EVENT AND/OR REMINDER)
+            if (binding.alertSpinner.selectedItem.toString() != "None") {
+                if (binding.alertSpinner.selectedItem.toString() == "Time of event") {
+                    alarmModel.setAlarmTime(
+                        timestamp,
+                        0
+                    )
+                } else if (binding.alertSpinner.selectedItem.toString() == "5 mins before") {
+                    alarmModel.setAlarmTime(
+                        timestamp,
+                        5
+                    )
+                } else if (binding.alertSpinner.selectedItem.toString() == "15 mins before") {
+                    alarmModel.setAlarmTime(
+                        timestamp,
+                        15
+                    )
+                } else if (binding.alertSpinner.selectedItem.toString() == "30 mins before") {
+                    alarmModel.setAlarmTime(
+                        timestamp,
+                        30
+                    )
+                } else if (binding.alertSpinner.selectedItem.toString() == "1 hour before") {
+                    alarmModel.setAlarmTime(
+                        timestamp,
+                        60
+                    )
+                } else if (binding.alertSpinner.selectedItem.toString() == "2 hours before") {
+                    alarmModel.setAlarmTime(
+                        timestamp,
+                        120
+                    )
+                }
+
+                if (binding.recurrenceSpinner.selectedItem.toString() == "None") {
+                    alarmModel.setAlarmScheduled(binding.nameEditText.text.toString(), model.getCurrentEvent().code
+                    )
+                } else {
+                    if (binding.recurrenceSpinner.selectedItem.toString() == "Daily") {
+                        alarmModel.setAlarmRecurring(
+                            86400000,
+                            binding.nameEditText.text.toString(),
+                            model.getCurrentEvent().code
+                        )
+                    } else if (binding.recurrenceSpinner.selectedItem.toString() == "Weekly") {
+                        alarmModel.setAlarmRecurring(
+                            604800000,
+                            binding.nameEditText.text.toString(),
+                            model.getCurrentEvent().code
+                        )
+                    } else if (binding.recurrenceSpinner.selectedItem.toString() == "Monthly") {
+                        alarmModel.setAlarmRecurring(
+                            2629746000,
+                            binding.nameEditText.text.toString(),
+                            model.getCurrentEvent().code
+                        )
+                    } else if (binding.recurrenceSpinner.selectedItem.toString() == "Annually") {
+                        alarmModel.setAlarmRecurring(
+                            31556952000,
+                            binding.nameEditText.text.toString(),
+                            model.getCurrentEvent().code
+                        )
+                    }
+                }
             }
             model.updateCurrentEvent(binding.eventTypeSpinner.selectedItem.toString(), binding.nameEditText.text.toString(),
                 Timestamp(timestamp), binding.alertSpinner.selectedItem.toString(), binding.recurrenceSpinner.selectedItem.toString(),

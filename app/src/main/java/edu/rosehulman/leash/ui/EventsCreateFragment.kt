@@ -34,11 +34,10 @@ class EventsCreateFragment : Fragment() {
     private lateinit var binding: FragmentEventsCreateBinding
     private lateinit var date: String
     private lateinit var timestamp: Date
-    var code = getRandom()
 
     // Create Alarm information
     private lateinit var alarmModel: AlarmViewModel
-    private lateinit var calendar: Calendar
+    var code = getRandom()
 
     // Random Number needed
     fun getRandom() = Random.nextInt(1000)
@@ -241,7 +240,7 @@ class EventsCreateFragment : Fragment() {
                 binding.alertCreateSpinner.selectedItem.toString(),
                 binding.recurrenceCreateSpinner.selectedItem.toString(),
                 binding.petCreateEditText.text.toString(),
-                getRandom()
+                code
             )
             this.findNavController().navigate(R.id.navigation_events)
         }
